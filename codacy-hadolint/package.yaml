@@ -27,7 +27,7 @@ library:
     - filemanip
 
 executables:
-  codacy-hadolint-exe:
+  codacy-hadolint:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -36,4 +36,8 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - codacy-hadolint
-
+    when:
+    - condition: '!(os(osx))'
+      ld-options:
+        - -static
+        - -pthread

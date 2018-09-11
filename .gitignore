@@ -1,3 +1,4 @@
 docs-generator/target/
 docs-generator/project/target/
 .stack-work/
+.tmp/
