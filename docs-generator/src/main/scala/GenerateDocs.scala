@@ -21,6 +21,7 @@ object GenerateDocs {
     options.set(Parser.EXTENSIONS, util.Arrays.asList(TablesExtension.create()))
     val parser = Parser.builder(options).build
     val file = File(args(0)).contentAsString
+    val dir = args(1)
     val document = parser.parse(file)
 
     val (descriptionSet, specificationSet) =
@@ -45,10 +46,10 @@ object GenerateDocs {
 
     val tool = Tool.Specification(Tool.Name("hadolint"), None, specificationSet)
     val patternsJsonContent = Json.prettyPrint(Json.toJson(tool))
-    val patternsJsonFile = File("patterns.json")
+    val patternsJsonFile = File(s"${dir}/patterns.json")
     patternsJsonFile.overwrite(patternsJsonContent)
     val descriptionsJsonContent = Json.prettyPrint(Json.toJson(descriptionSet))
-    val descriptionsJsonFile = File("description.json")
+    val descriptionsJsonFile = File(s"${dir}/description.json")
     descriptionsJsonFile.overwrite(descriptionsJsonContent)
     val content = descriptionsJsonFile.contentAsString
   }
