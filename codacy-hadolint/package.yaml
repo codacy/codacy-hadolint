@@ -1,0 +1,39 @@
+name:                codacy-hadolint
+version:             0.1.0.0
+github:              "codacy/codacy-hadolint"
+license:             MIT
+author:              "João Lopes"
+maintainer:          "lopes@codacy.com"
+copyright:           "2018 Codacy"
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/codacy/codacy-hadolint#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+    - &bytestring bytestring >=0.10
+    - text
+    - aeson
+    - bytestring
+    - hadolint
+    - containers
+    - directory
+    - filemanip
+
+executables:
+  codacy-hadolint-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - codacy-hadolint
+
