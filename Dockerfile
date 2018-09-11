@@ -19,7 +19,7 @@ WORKDIR /opt/codacy-hadolint/
 COPY codacy-hadolint/stack.yaml codacy-hadolint/package.yaml /opt/codacy-hadolint/
 RUN stack --no-terminal --install-ghc test --only-dependencies
 
-COPY . /opt/codacy-hadolint
+COPY codacy-hadolint /opt/codacy-hadolint
 RUN stack install --ghc-options="-fPIC"
 
 # COMPRESS WITH UPX
@@ -30,7 +30,7 @@ RUN curl -sSL https://github.com/upx/upx/releases/download/v3.94/upx-3.94-amd64_
 FROM scratch AS distro
 LABEL maintainer="João Lopes <lopes@codacy.com>"
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
-COPY patterns.json description.json /docs/
+COPY codacy-hadolint/docs/patterns.json codacy-hadolint/docs/description.json /docs/
 WORKDIR /src/
 ENTRYPOINT ["/bin/codacy-hadolint"]
 
