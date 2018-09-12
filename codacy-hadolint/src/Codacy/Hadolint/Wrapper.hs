@@ -94,7 +94,11 @@ filesOrFind _ = do
         (x : xs) -> return (x :| xs)
         _ -> exitSuccess
 
-    
+readHadolintConfig :: Either String Hadolint.LintOptions -> IO (Hadolint.LintOptions)
+readHadolintConfig hadolintConfigEither = 
+    case hadolintConfigEither of 
+    Left err -> putStrLn err >> exitFailure
+    Right conf -> return conf
 
 lint :: IO ()
 lint = do
@@ -102,10 +106,7 @@ lint = do
     patternsFileContent <- readPatternsFile
     PatternList(parsedPatterns) <- readAndParsePatternsFile
     hadolintConfigEither <- readHadolintConfigFile $ convertToHadolintConfigs parsedPatterns maybeConfig
-    hadolintConfig <-
-        case hadolintConfigEither of 
-            Left err -> putStrLn err >> exitFailure
-            Right conf -> return conf
+    hadolintConfig <- readHadolintConfig $ hadolintConfigEither
     files <- filesOrFind maybeConfig
     res <- Hadolint.lint hadolintConfig files
     Hadolint.printResultsAndExit Hadolint.Codacy res
