@@ -30,7 +30,7 @@ RUN curl -sSL https://github.com/upx/upx/releases/download/v3.94/upx-3.94-amd64_
 FROM scratch AS distro
 LABEL maintainer="João Lopes <lopes@codacy.com>"
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
-COPY codacy-hadolint/docs/patterns.json codacy-hadolint/docs/description.json /docs/
+COPY codacy-hadolint/docs/ /docs/
 WORKDIR /src/
 ENTRYPOINT ["/bin/codacy-hadolint"]
 

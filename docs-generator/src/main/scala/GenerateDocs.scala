@@ -49,7 +49,7 @@ object GenerateDocs {
     val patternsJsonFile = File(s"${dir}/patterns.json")
     patternsJsonFile.overwrite(patternsJsonContent)
     val descriptionsJsonContent = Json.prettyPrint(Json.toJson(descriptionSet))
-    val descriptionsJsonFile = File(s"${dir}/description.json")
+    val descriptionsJsonFile = File(s"${dir}/description/description.json")
     descriptionsJsonFile.overwrite(descriptionsJsonContent)
     val content = descriptionsJsonFile.contentAsString
   }
