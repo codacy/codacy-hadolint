@@ -94,6 +94,17 @@ filesOrFind _ = do
         (x : xs) -> return (x :| xs)
         _ -> exitSuccess
 
+replace :: Eq a => [a] -> [a] -> [a] -> [a]
+replace [] _ _ = []
+replace str toRepl repl =
+    if take (length toRepl) str == toRepl
+        then repl ++ (replace (drop (length toRepl) str) toRepl repl)
+        else [head str] ++ (replace (tail str) toRepl repl)
+
+parseFileNames :: NonEmpty.NonEmpty String -> IO (NonEmpty.NonEmpty String)
+parseFileNames filePaths = do
+    return (NonEmpty.map(\str -> replace str "./" "") filePaths)
+    
 readHadolintConfig :: Either String Hadolint.LintOptions -> IO (Hadolint.LintOptions)
 readHadolintConfig hadolintConfigEither = 
     case hadolintConfigEither of 
@@ -107,6 +118,7 @@ lint = do
     PatternList(parsedPatterns) <- readAndParsePatternsFile
     hadolintConfigEither <- readHadolintConfigFile $ convertToHadolintConfigs parsedPatterns maybeConfig
     hadolintConfig <- readHadolintConfig $ hadolintConfigEither
-    files <- filesOrFind maybeConfig
-    res <- Hadolint.lint hadolintConfig files
+    filePaths <- filesOrFind maybeConfig
+    fileNames <- parseFileNames filePaths
+    res <- Hadolint.lint hadolintConfig fileNames
     Hadolint.printResultsAndExit Hadolint.Codacy res
