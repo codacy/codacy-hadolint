@@ -21,7 +21,7 @@ library:
     - text
     - aeson
     - bytestring
-    - hadolint
+    - hadolint >= 1.13.0 && < 1.13.1
     - containers
     - directory
     - filemanip
