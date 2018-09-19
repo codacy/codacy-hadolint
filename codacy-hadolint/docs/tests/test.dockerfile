@@ -1,8 +1,8 @@
-##Patterns: DL3006, DL3011
+##Patterns: DL3006
 
 ##Info: DL3006
 FROM debian
 COPY package.json usr/src/app
-##Info: DL3011
-EXPOSE 80000
+WORKDIR /usr/src/app \
+RUN npm install node-static
 CMD ["npm", "start"]
