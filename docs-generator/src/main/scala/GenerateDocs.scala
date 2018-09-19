@@ -62,7 +62,9 @@ object GenerateDocs {
   def tableRowToPattern(tableRow: TableRow): (String, String) = {
     tableRow.getChildIterator.asScala.toList match {
       case List(rule: TableCell, description: TableCell) =>
-        val ruleName = filterType[Link](rule).head.getText.toString
+        val ruleName = filterType[Link](rule).headOption.fold[String](
+          throw new Exception("Failed parsing tableRow to Pattern")
+        )(_.getText.toString)
         val descriptionStr = description.getText.toString
         val parsedStr = Jsoup.parse(descriptionStr).text()
         (ruleName, parsedStr)
