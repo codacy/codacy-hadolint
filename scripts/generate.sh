@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 mkdir -p .tmp
-version=`cat .hadolint-version`
+version=$(cat .hadolint-version)
 curl -sSL https://raw.githubusercontent.com/hadolint/hadolint/v${version}/README.md -o .tmp/Hadolint.md
 mkdir -p codacy-hadolint/docs
 mkdir -p codacy-hadolint/docs/description
