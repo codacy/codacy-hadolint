@@ -89,7 +89,7 @@ readHadolintConfigFile = Config.applyConfig Nothing
 filesOrFind :: Maybe CodacyConfig -> IO (NonEmpty.NonEmpty String)
 filesOrFind (Just (CodacyConfig (x : xs) _)) = return (x :| xs)
 filesOrFind _ = do
-    filePaths <- Find.find Find.always (Find.fileName ==? "Dockerfile") "."
+    filePaths <- Find.find Find.always (Find.fileName ==? "Dockerfile" Find.||? Find.extension ==? ".dockerfile") "."
     case filePaths of
         (x : xs) -> return (x :| xs)
         _ -> exitSuccess
