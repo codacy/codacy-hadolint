@@ -20,11 +20,12 @@ object GenerateDocs {
     val file = File(args(0)).contentAsString
     val dir = args(2)
     val hadolintRules = parseRulesFile(args(1))
-    parseMarkdownTable(file, dir, hadolintRules)
+    val (descriptionSet, specificationSet) = parseMarkdownTable(file, hadolintRules, dir)
+    writeFiles(specificationSet, descriptionSet, dir)
   }
 
   def parseRulesFile(filepath: String): Map[String, Specification] = {
-    val file = File("Rules.hs")
+    val file = File(filepath)
     val lines = file.lines.dropWhile(_.contains("--  RULES  --"))
     val codeLines = lines.filter(x => (x.contains("code =") || x.contains("severity =")))
     val parsedCodeLines: List[String] = codeLines.map(line =>
@@ -51,14 +52,13 @@ object GenerateDocs {
     }
   }
 
-  def parseMarkdownTable(file: String, dir: String, hadolintRules: Map[String, Specification]): Unit = {
+  def parseMarkdownTable(file: String, hadolintRules: Map[String, Specification], dir: String): (Set[Description], Set[Specification]) = {
     val options = new MutableDataSet
     options.set(Parser.EXTENSIONS, util.Arrays.asList(TablesExtension.create()))
     val parser = Parser.builder(options).build
     val document = parser.parse(file)
 
-    val (descriptionSet, specificationSet) =
-      document.getChildIterator.asScala.toList.collect { case table: TableBlock => table }
+    document.getChildIterator.asScala.toList.collect { case table: TableBlock => table }
         .flatMap(filterType[TableBody])
         .flatMap(filterType[TableRow])
         .map(tableRowToPattern)
@@ -76,16 +76,18 @@ object GenerateDocs {
                  Specification(Pattern.Id(ruleName), Result.Level.Info, Pattern.Category.CodeStyle, None))))
         }
         .combineAll
+  }
 
+  def writeFiles(specificationSet: Set[Specification], descriptionSet: Set[Description], dir: String): Unit = {
     val tool = Tool.Specification(Tool.Name("hadolint"), None, specificationSet)
     val patternsJsonContent = Json.prettyPrint(Json.toJson(tool))
-    val patternsJsonFile = File(s"${dir}/patterns.json")
+    val patternsJsonFile = File(s"$dir/patterns.json")
     patternsJsonFile.overwrite(patternsJsonContent)
     val descriptionsJsonContent = Json.prettyPrint(Json.toJson(descriptionSet))
-    val descriptionsJsonFile = File(s"${dir}/description/description.json")
+    val descriptionsJsonFile = File(s"$dir/description/description.json")
     descriptionsJsonFile.overwrite(descriptionsJsonContent)
-    val content = descriptionsJsonFile.contentAsString
   }
+
   def filterType[A: ClassTag](node: Node): List[A] =
     node.getChildIterator.asScala.toList.collect {
       case a: A => a
