@@ -22,14 +22,24 @@ jobs:
     steps:
     - attach_workspace:
         at: .
-    - run: ./codacy-plugins-test json codacy/$CIRCLE_PROJECT_REPONAME:latest
-  
+    - run:
+        name: Load docker from file
+        command: docker load --input codacy-hadolint-docker-image.tar
+    - run:
+        name: Run plugins test (json)
+        command: ./codacy-plugins-test json codacy/$CIRCLE_PROJECT_REPONAME:latest
+        
   codacy-plugins-test-patterns:
     <<: *default_job
     steps:
     - attach_workspace:
         at: .
-    - run: ./codacy-plugins-test pattern codacy/$CIRCLE_PROJECT_REPONAME:latest
+    - run:
+        name: Load docker from file
+        command: docker load --input codacy-hadolint-docker-image.tar
+    - run:
+        name: Run plugins test (pattern)
+        command: ./codacy-plugins-test pattern codacy/$CIRCLE_PROJECT_REPONAME:latest
         
   build:
     <<: *default_job
@@ -39,6 +49,13 @@ jobs:
         name: Publish tool docker locally
         working_directory: ~/workdir
         command: ./scripts/build.sh
+    - run:
+        name: Save docker to file
+        command: docker save --output codacy-hadolint-docker-image.tar codacy/$CIRCLE_PROJECT_REPONAME
+    - persist_to_workspace:
+        root: .
+        paths:
+        - codacy-hadolint-docker-image.tar
   
   publish-docker:
     <<: *default_job
