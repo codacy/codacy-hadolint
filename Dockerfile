@@ -32,6 +32,7 @@ LABEL maintainer="João Lopes <lopes@codacy.com>"
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
 RUN adduser -D -u 2004 docker
 COPY codacy-hadolint/docs/ /docs/
+RUN ["chown", "-R", "docker:docker", "/docs"]
 WORKDIR /src/
 USER docker
 ENTRYPOINT ["/bin/codacy-hadolint"]
