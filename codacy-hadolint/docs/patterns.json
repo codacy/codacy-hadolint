@@ -1,5 +1,6 @@
 {
   "name" : "hadolint",
+  "version" : "v1.13.0",
   "patterns" : [ {
     "patternId" : "SC1097",
     "level" : "Info",
