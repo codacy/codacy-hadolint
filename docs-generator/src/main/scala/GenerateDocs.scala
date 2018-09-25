@@ -1,6 +1,7 @@
 import java.util
 
 import better.files.File
+import CreateMarkdowns.moveMarkdownFiles
 import com.codacy.plugins.api._
 import com.codacy.plugins.api.results.Pattern.{Category, Description, Specification}
 import com.codacy.plugins.api.results.Result.Level
@@ -18,10 +19,12 @@ import scala.reflect.ClassTag
 object GenerateDocs {
   def main(args: Array[String]): Unit = {
     val file = File(args(0)).contentAsString
-    val dir = args(2)
+    val outputDir = args(2)
+    val markdownInputDir = args(3)
     val hadolintRules = parseRulesFile(args(1))
-    val (descriptionSet, specificationSet) = parseMarkdownTable(file, hadolintRules, dir)
-    writeFiles(specificationSet, descriptionSet, dir)
+    val (descriptionSet, specificationSet) = parseMarkdownTable(file, hadolintRules, outputDir)
+    writeFiles(specificationSet, descriptionSet, outputDir)
+    moveMarkdownFiles(specificationSet, markdownInputDir, outputDir)
   }
 
   def parseRulesFile(filepath: String): Map[String, Specification] = {
