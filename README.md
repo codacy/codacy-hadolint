@@ -4,7 +4,7 @@
 [![Build Status](https://circleci.com/gh/codacy/codacy-hadolint.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/codacy/codacy-hadolint)
 [![Docker Version](https://images.microbadger.com/badges/version/codacy/codacy-hadolint.svg)](https://microbadger.com/images/codacy/codacy-hadolint "Get your own version badge on microbadger.com")
 
-[Docker](https://www.docker.com) container to allow support for [Hadolint](https://www.hadolint.io/) on Codacy.
+[Docker](https://www.docker.com) container to allow support for [Hadolint](https://github.com/hadolint/hadolint) on Codacy.
 
 ## Dockerfile building
 
