@@ -10,7 +10,7 @@ jobs:
     <<: *default_job
     steps:
     - run: |
-        curl -sSL https://github.com/codacy/codacy-plugins-test/releases/download/0.1.0-pre/codacy-plugins-test-linux -o codacy-plugins-test && \
+        curl -sSL https://267-39913866-gh.circle-artifacts.com/0/codacy-plugins-test-linux -o codacy-plugins-test && \
         chmod +x codacy-plugins-test
     - persist_to_workspace:
         root: .
