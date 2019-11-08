@@ -12,7 +12,7 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/codacy/codacy-hadolint#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base >= 4.8 && < 5
 
 library:
   source-dirs: src
@@ -21,7 +21,7 @@ library:
     - text
     - aeson
     - bytestring
-    - hadolint >= 1.13.0 && < 1.13.1
+    - hadolint == 1.17.2
     - containers
     - directory
     - filemanip
