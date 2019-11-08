@@ -8,6 +8,6 @@ object CreateMarkdowns {
       spec <- specificationSet.toList
       filename = s"**/${spec.patternId.value}.md"
       file <- File(inputDir).glob(filename).toStream.headOption
-    } file.copyToDirectory(File(s"$outputDir/description"))
+    } file.copyToDirectory(File(s"$outputDir/description"))(copyOptions = File.CopyOptions(true))
   }
 }
