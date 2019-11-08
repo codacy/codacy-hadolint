@@ -8,7 +8,7 @@
 
 ## Dockerfile building
 
-To build the Codacy-Hadolint dockerfile : 
+To build the Codacy-Hadolint dockerfile :
 
 1. Clone the source:
 
@@ -28,6 +28,11 @@ To build the Codacy-Hadolint dockerfile :
 To update the Hadolint docs :
 
     $ ./scripts/generate.sh
+
+## Update version
+1. Update `.hadolint-version`
+2. Update `stack.yaml`
+3. Update `package.yaml`
 
 ## Docs
 
