@@ -20,7 +20,7 @@ To build the Codacy-Hadolint dockerfile :
 2. Build the container:
 
     ``` sh
-    $ ./scripts/build.sh
+    $ docker build -t codacy-hadolint -f Dockerfile .
     ```
 
 ## Docs Generation
