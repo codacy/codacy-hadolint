@@ -1,6 +1,6 @@
 {
   "name" : "hadolint",
-  "version" : "v1.13.0",
+  "version" : "1.17.2",
   "patterns" : [ {
     "patternId" : "SC1097",
     "level" : "Info",
@@ -21,6 +21,10 @@
     "patternId" : "SC2015",
     "level" : "Info",
     "category" : "CodeStyle"
+  }, {
+    "patternId" : "DL3027",
+    "level" : "Warning",
+    "category" : "ErrorProne"
   }, {
     "patternId" : "DL3016",
     "level" : "Warning",
@@ -104,6 +108,10 @@
   }, {
     "patternId" : "DL3017",
     "level" : "Error",
+    "category" : "ErrorProne"
+  }, {
+    "patternId" : "DL3028",
+    "level" : "Warning",
     "category" : "ErrorProne"
   }, {
     "patternId" : "SC1018",
@@ -219,6 +227,10 @@
     "category" : "ErrorProne"
   }, {
     "patternId" : "SC1078",
+    "level" : "Info",
+    "category" : "CodeStyle"
+  }, {
+    "patternId" : "SC2039",
     "level" : "Info",
     "category" : "CodeStyle"
   }, {

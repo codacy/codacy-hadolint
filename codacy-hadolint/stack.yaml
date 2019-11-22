@@ -35,10 +35,13 @@ resolver: lts-12.9
 #  - wai
 packages:
 - .
-- location:
-    github: hadolint/hadolint
-    commit: f355fc076d22a0e2426428422fab142f8771f3cf
-  extra-dep: true
+
+extra-deps:
+  - hadolint-1.17.2
+  - HsYAML-0.1.2.0
+  - ShellCheck-0.7.0
+  - language-docker-8.0.2
+  - megaparsec-7.0.0
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.

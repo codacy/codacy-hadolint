@@ -81,8 +81,13 @@ object GenerateDocs {
         .combineAll
   }
 
+  private def getVersion: String = {
+    val repoRoot: File = File("../.hadolint-version")
+    repoRoot.lines.mkString("")
+  }
+
   def writeFiles(specificationSet: Set[Specification], descriptionSet: Set[Description], dir: String): Unit = {
-    val tool = Tool.Specification(Tool.Name("hadolint"), Some(Tool.Version("v1.13.0")), specificationSet)
+    val tool = Tool.Specification(Tool.Name("hadolint"), Some(Tool.Version(getVersion)), specificationSet)
     val patternsJsonContent = Json.prettyPrint(Json.toJson(tool))
     val patternsJsonFile = File(s"$dir/patterns.json")
     patternsJsonFile.overwrite(patternsJsonContent)

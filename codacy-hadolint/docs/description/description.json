@@ -39,6 +39,18 @@
   "title" : "SC1066",
   "description" : "Don't use $ on the left side of assignments."
 }, {
+  "patternId" : "SC2039",
+  "title" : "SC2039",
+  "description" : "In POSIX sh, something is undefined."
+}, {
+  "patternId" : "DL3027",
+  "title" : "DL3027",
+  "description" : "Do not use `apt` as it is meant to be a end-user tool, use `apt-get` or `apt-cache` instead"
+}, {
+  "patternId" : "DL3028",
+  "title" : "DL3028",
+  "description" : "Pin versions in gem install. Instead of `gem install ` use `gem install :`"
+}, {
   "patternId" : "SC2086",
   "title" : "SC2086",
   "description" : "Double quote to prevent globbing and word splitting."
