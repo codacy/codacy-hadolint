@@ -3,3 +3,5 @@ docs-generator/project/target/
 docs-generator/.idea/
 .stack-work/
 .tmp/
+.metals
+.bloop
