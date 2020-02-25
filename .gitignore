@@ -1,5 +1,6 @@
 docs-generator/target/
 docs-generator/project/target/
+docs-generator/project/project/
 docs-generator/.idea/
 .stack-work/
 .tmp/
