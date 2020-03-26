@@ -37,7 +37,7 @@ packages:
 - .
 
 extra-deps:
-  - hadolint-1.17.2
+  - hadolint-1.17.5
   - HsYAML-0.1.2.0
   - ShellCheck-0.7.0
   - language-docker-8.0.2
