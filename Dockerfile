@@ -3,17 +3,17 @@ FROM debian:buster-slim AS builder
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update \
- && apt-get install --no-install-recommends -y \
-    build-essential=12.6 \
-    libffi-dev=3.2.* \
-    libgmp-dev=2:6.1.* \
-    zlib1g-dev=1:1.2.* \
-    curl=7.64.* \
-    ca-certificates \
-    git=1:2.20.* \
-    netbase=5.6 \
- && curl -sSL https://get.haskellstack.org/ | sh \
- && rm -rf /var/lib/apt/lists/*
+  && apt-get install --no-install-recommends -y \
+  build-essential=12.6 \
+  libffi-dev=3.2.* \
+  libgmp-dev=2:6.1.* \
+  zlib1g-dev=1:1.2.* \
+  curl=7.64.* \
+  ca-certificates \
+  git=1:2.20.* \
+  netbase=5.6 \
+  && curl -sSL https://get.haskellstack.org/ | sh \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/codacy-hadolint/
 COPY codacy-hadolint/stack.yaml codacy-hadolint/package.yaml /opt/codacy-hadolint/

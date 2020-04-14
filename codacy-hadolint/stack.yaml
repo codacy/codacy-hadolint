@@ -37,7 +37,8 @@ packages:
 - .
 
 extra-deps:
-  - hadolint-1.17.2
+  ## The version inside the package is wrong. It contains version: '1.17.4', which is a bug on the tool itself
+  - url: https://github.com/hadolint/hadolint/archive/v1.17.5.tar.gz
   - HsYAML-0.1.2.0
   - ShellCheck-0.7.0
   - language-docker-8.0.2

@@ -1,6 +1,6 @@
 {
   "name" : "hadolint",
-  "version" : "1.17.2",
+  "version" : "1.17.5",
   "patterns" : [ {
     "patternId" : "DL3000",
     "level" : "Error",

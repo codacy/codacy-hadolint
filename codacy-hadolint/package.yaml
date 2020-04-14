@@ -21,7 +21,9 @@ library:
     - text
     - aeson
     - bytestring
-    - hadolint == 1.17.2
+## Although the version here is 1.17.4, the current version is 1.17.5 (check stack.yaml). 
+## This was done because the version defined on the tool dependency is '1.17.4' for the version 1.17.5 (check version on package.yaml inside https://github.com/hadolint/hadolint/archive/v1.17.5.tar.gz)
+    - hadolint == 1.17.4
     - containers
     - directory
     - filemanip
