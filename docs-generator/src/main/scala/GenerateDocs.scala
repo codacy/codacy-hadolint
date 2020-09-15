@@ -19,6 +19,64 @@ import scala.reflect.ClassTag
 
 object GenerateDocs {
 
+  val defaultPatterns = List("DL3000",
+                             "DL3001",
+                             "DL3002",
+                             "DL3003",
+                             "DL3004",
+                             "DL3005",
+                             "DL3006",
+                             "DL3007",
+                             "DL3008",
+                             "DL3009",
+                             "DL3010",
+                             "DL3011",
+                             "DL3012",
+                             "DL3013",
+                             "DL3014",
+                             "DL3015",
+                             "DL3020",
+                             "DL3021",
+                             "DL3022",
+                             "DL3023",
+                             "DL3024",
+                             "DL4000",
+                             "DL4001",
+                             "DL4003",
+                             "DL4004",
+                             "DL4005",
+                             "SC1000",
+                             "SC1001",
+                             "SC1007",
+                             "SC1010",
+                             "SC1018",
+                             "SC1035",
+                             "SC1045",
+                             "SC1065",
+                             "SC1066",
+                             "SC1068",
+                             "SC1077",
+                             "SC1078",
+                             "SC1079",
+                             "SC1081",
+                             "SC1083",
+                             "SC1086",
+                             "SC1087",
+                             "SC1095",
+                             "SC1097",
+                             "SC1098",
+                             "SC1099",
+                             "SC2002",
+                             "SC2015",
+                             "SC2026",
+                             "SC2028",
+                             "SC2035",
+                             "SC2046",
+                             "SC2086",
+                             "SC2140",
+                             "SC2154",
+                             "SC2164")
+
   def main(args: Array[String]): Unit = {
     val file = File(args(0)).contentAsString
     val outputDir = args(2)
@@ -40,7 +98,14 @@ object GenerateDocs {
     val rules = for {
       List(ruleName, level) <- parsedCodeLines.grouped(2).toList
       (category, subcategory) = parseRuleCategory(level, ruleName)
-    } yield (ruleName, Specification(Pattern.Id(ruleName), parseRuleLevel(level), category, subcategory, None))
+    } yield
+      (ruleName,
+       Specification(Pattern.Id(ruleName),
+                     parseRuleLevel(level),
+                     category,
+                     subcategory,
+                     Set.empty,
+                     enabled = defaultPatterns.contains(ruleName)))
 
     rules.toMap
   }
@@ -86,14 +151,17 @@ object GenerateDocs {
                          Pattern.Title(ruleName),
                          Option(Pattern.DescriptionText(description)),
                          None,
-                         None)
+                         Set.empty)
            ),
            Set(
              hadolintRules
-               .getOrElse(
-                 ruleName,
-                 Specification(Pattern.Id(ruleName), Result.Level.Info, Pattern.Category.CodeStyle, None, None)
-               )
+               .getOrElse(ruleName,
+                          Specification(Pattern.Id(ruleName),
+                                        Result.Level.Info,
+                                        Pattern.Category.CodeStyle,
+                                        None,
+                                        Set.empty,
+                                        enabled = defaultPatterns.contains(ruleName)))
            ))
       }
       .combineAll
