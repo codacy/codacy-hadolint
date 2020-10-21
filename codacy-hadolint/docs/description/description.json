@@ -1,9 +1,4 @@
 [ {
-  "patternId" : "SC1000",
-  "title" : "SC1000",
-  "description" : "`$` is not used specially and should therefore be escaped.",
-  "parameters" : [ ]
-}, {
   "patternId" : "DL3013",
   "title" : "DL3013",
   "description" : "Pin versions in pip.",
@@ -17,11 +12,6 @@
   "patternId" : "DL3021",
   "title" : "DL3021",
   "description" : "`COPY` with more than 2 arguments requires the last argument to end with `/`",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3028",
-  "title" : "DL3028",
-  "description" : "Pin versions in gem install. Instead of `gem install ` use `gem install :`",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3023",
@@ -59,6 +49,16 @@
   "description" : "Braces are required when expanding arrays, as in `${array[idx]}`.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3030",
+  "title" : "DL3030",
+  "description" : "Use the `-y` switch to avoid manual input `yum install -y `",
+  "parameters" : [ ]
+}, {
+  "patternId" : "SC1000",
+  "title" : "SC1000",
+  "description" : "`$` is not used specially and should therefore be escaped.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL3019",
   "title" : "DL3019",
   "description" : "Use the `--no-cache` switch to avoid the need to use `--update` and remove `/var/cache/apk/*` when done installing packages.",
@@ -82,6 +82,11 @@
   "patternId" : "SC1081",
   "title" : "SC1081",
   "description" : "Scripts are case sensitive. Use `if`, not `If`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3031",
+  "title" : "DL3031",
+  "description" : "Do not use `yum update`",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1077",
@@ -147,6 +152,16 @@
   "patternId" : "SC1098",
   "title" : "SC1098",
   "description" : "Quote/escape special characters when using `eval`, e.g. `eval \"a=(b)\"`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3028",
+  "title" : "DL3028",
+  "description" : "Pin versions in gem install. Instead of `gem install ` use `gem install :`",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3029",
+  "title" : "DL3029",
+  "description" : "Do not use --platform flag with FROM.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3002",
@@ -234,11 +249,6 @@
   "description" : "Don't put spaces around the `=` in assignments.",
   "parameters" : [ ]
 }, {
-  "patternId" : "SC1097",
-  "title" : "SC1097",
-  "description" : "Unexpected `==`. For assignment, use `=`. For comparison, use `[/[[`.",
-  "parameters" : [ ]
-}, {
   "patternId" : "DL3008",
   "title" : "DL3008",
   "description" : "Pin versions in apt-get install.",
@@ -262,6 +272,16 @@
   "patternId" : "DL4001",
   "title" : "DL4001",
   "description" : "Either use Wget or Curl but not both.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3032",
+  "title" : "DL3032",
+  "description" : "`yum clean all` missing after yum command.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "SC1097",
+  "title" : "SC1097",
+  "description" : "Unexpected `==`. For assignment, use `=`. For comparison, use `[ .. ]` or `[[ .. ]]`.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1099",
@@ -317,6 +337,11 @@
   "patternId" : "DL3000",
   "title" : "DL3000",
   "description" : "Use absolute WORKDIR.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3033",
+  "title" : "DL3033",
+  "description" : "Specify version with `yum install -y -`",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1095",
