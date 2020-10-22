@@ -31,8 +31,8 @@ To update the Hadolint docs :
 
 ## Update version
 1. Update `.hadolint-version`
-2. Update `stack.yaml`
-3. Update `package.yaml`
+2. Update `codacy-hadolint/stack.yaml`
+3. Update `codacy-hadolint/package.yaml`
 
 ## Docs
 
