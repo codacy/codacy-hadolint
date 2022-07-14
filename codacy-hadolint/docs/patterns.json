@@ -1,9 +1,16 @@
 {
   "name" : "hadolint",
-  "version" : "1.18.2",
+  "version" : "2.10.0",
   "patterns" : [ {
+    "patternId" : "DL1001",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
     "patternId" : "DL3000",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
@@ -11,13 +18,13 @@
   }, {
     "patternId" : "DL3001",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3002",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "Security",
     "subcategory" : "Auth",
     "parameters" : [ ],
@@ -25,14 +32,14 @@
     "enabled" : true
   }, {
     "patternId" : "DL3003",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3004",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "Security",
     "subcategory" : "Auth",
     "parameters" : [ ],
@@ -40,28 +47,28 @@
     "enabled" : true
   }, {
     "patternId" : "DL3005",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3006",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3007",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3008",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
@@ -69,20 +76,20 @@
   }, {
     "patternId" : "DL3009",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3010",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3011",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
@@ -90,20 +97,20 @@
   }, {
     "patternId" : "DL3012",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3013",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3014",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
@@ -118,21 +125,14 @@
     "enabled" : true
   }, {
     "patternId" : "DL3016",
-    "level" : "Warning",
-    "category" : "ErrorProne",
-    "parameters" : [ ],
-    "languages" : [ ],
-    "enabled" : false
-  }, {
-    "patternId" : "DL3017",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3018",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
@@ -140,55 +140,55 @@
   }, {
     "patternId" : "DL3019",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3020",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3021",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3022",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3023",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3024",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL3025",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3026",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "Security",
     "subcategory" : "InsecureModulesLibraries",
     "parameters" : [ ],
@@ -196,91 +196,273 @@
     "enabled" : false
   }, {
     "patternId" : "DL3027",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3028",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3029",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3030",
-    "level" : "Warning",
-    "category" : "ErrorProne",
-    "parameters" : [ ],
-    "languages" : [ ],
-    "enabled" : false
-  }, {
-    "patternId" : "DL3031",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3032",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL3033",
-    "level" : "Warning",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3034",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3035",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3036",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3037",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3038",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3040",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3041",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3042",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3043",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3044",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3045",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3046",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3047",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3048",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3049",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3050",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3051",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3052",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3053",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3054",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3055",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3056",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3057",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3058",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3059",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3060",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3061",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : false
   }, {
     "patternId" : "DL4000",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL4001",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL4003",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL4004",
-    "level" : "Error",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL4005",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
   }, {
     "patternId" : "DL4006",
-    "level" : "Warning",
+    "level" : "Info",
     "category" : "ErrorProne",
     "parameters" : [ ],
     "languages" : [ ],

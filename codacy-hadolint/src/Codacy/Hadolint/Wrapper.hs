@@ -10,9 +10,13 @@ import Data.Aeson hiding (Result)
 import Data.Text (Text, pack)
 import Data.List (find, (\\))
 import qualified Data.Set as Set
-import qualified Hadolint.Lint as Hadolint 
-import qualified Hadolint.Rules as Rules
-import qualified Hadolint.Config as Config
+import qualified Hadolint.Config.Configuration as HadolintConfiguration
+import qualified Hadolint.Config.Configfile as HadolintConfigFile
+import qualified Hadolint.Lint as HadolintLinter
+import qualified Hadolint.Formatter as HadolintFormatter
+import qualified Hadolint.Formatter.Format as HadolintFormat
+import Hadolint.Rule (RuleCode (..))
+
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
 import qualified System.FilePath.Find as Find
@@ -57,34 +61,64 @@ readAndParseConfigFile = do
         Left err -> putStrLn err >> exitFailure
         Right config -> return config
 
-defaultConfig :: Hadolint.LintOptions
-defaultConfig = Hadolint.LintOptions {
-    ignoreRules = []
-    , rulesConfig = Rules.RulesConfig Set.empty
-}
 
-convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Hadolint.LintOptions
+defaultConfig :: HadolintConfiguration.Configuration
+defaultConfig = HadolintConfiguration.Configuration {
+            noFail = False
+            , noColor = False
+            , verbose = False
+            , format = HadolintFormat.Codacy
+            , errorRules = mempty
+            , warningRules = mempty
+            , infoRules = mempty
+            , styleRules = mempty
+            , labelSchema = mempty
+            , strictLabels = False
+            , disableIgnorePragma = False
+            , failureThreshold = mempty
+            , ignoreRules = mempty
+            , allowedRegistries = Set.empty
+        }
+
+convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> HadolintConfiguration.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
-        Just (Tool _ (Just patterns)) -> Hadolint.LintOptions {
-            ignoreRules = ignoredFromPatterns docs patterns
-            , rulesConfig = Rules.RulesConfig Set.empty
+        Just (Tool _ (Just patterns)) -> HadolintConfiguration.Configuration {
+            noFail = False
+            , noColor = False
+            , verbose = False
+            , format = HadolintFormat.Codacy
+            , errorRules = mempty
+            , warningRules = mempty
+            , infoRules = mempty
+            , styleRules = mempty
+            , labelSchema = mempty
+            , strictLabels = False
+            , disableIgnorePragma = False
+            , failureThreshold = mempty
+            , ignoreRules = ignoredFromPatterns docs patterns
+            , allowedRegistries = Set.empty
         }
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
 
-ignoredFromPatterns :: [DocsPattern] -> [Pattern] -> [IgnoreRule]
+ignoredFromPatterns :: [DocsPattern] -> [Pattern] -> [RuleCode]
 ignoredFromPatterns allPatterns configPatterns = map pack patternsToIgnore
     where
         patternsToIgnore = allPatternIds \\ configPatternIds
         allPatternIds = map (\rule -> patternId (rule :: DocsPattern)) allPatterns
-        configPatternIds = map (\rule -> patternId (rule :: Pattern)) configPatterns
+        configPatternIds = map (\rule -> patternId ( rule :: Pattern)) configPatterns
 
 findTool :: [Tool] -> Maybe Tool
 findTool = find (\tool -> name tool == "hadolint")
 
-readHadolintConfigFile :: Hadolint.LintOptions -> IO (Either String Hadolint.LintOptions)
-readHadolintConfigFile = Config.applyConfig Nothing 
+readHadolintConfigFile :: HadolintConfiguration.Configuration -> IO(HadolintConfiguration.Configuration)
+readHadolintConfigFile config = do
+    partialConfigEither <- HadolintConfigFile.getConfigFromFile Nothing False
+    case partialConfigEither of
+        Left err -> config
+        Right partialConfig -> HadolintConfiguration.applyPartialConfiguration config partialConfig
+
 
 filesOrFind :: Maybe CodacyConfig -> IO (NonEmpty.NonEmpty String)
 filesOrFind (Just (CodacyConfig (x : xs) _)) = return (x :| xs)
@@ -105,7 +139,7 @@ parseFileNames :: NonEmpty.NonEmpty String -> IO (NonEmpty.NonEmpty String)
 parseFileNames filePaths = do
     return (NonEmpty.map(\str -> replace str "./" "") filePaths)
     
-readHadolintConfig :: Either String Hadolint.LintOptions -> IO (Hadolint.LintOptions)
+readHadolintConfig :: Either String  HadolintConfiguration.Configuration -> IO (HadolintConfiguration.Configuration)
 readHadolintConfig hadolintConfigEither = 
     case hadolintConfigEither of 
     Left err -> putStrLn err >> exitFailure
@@ -116,9 +150,9 @@ lint = do
     maybeConfig <- readAndParseConfigFile
     patternsFileContent <- readPatternsFile
     PatternList(parsedPatterns) <- readAndParsePatternsFile
-    hadolintConfigEither <- readHadolintConfigFile $ convertToHadolintConfigs parsedPatterns maybeConfig
-    hadolintConfig <- readHadolintConfig $ hadolintConfigEither
+    hadolintConfig <- readHadolintConfigFile (convertToHadolintConfigs parsedPatterns maybeConfig)
+    --hadolintConfig <- readHadolintConfig $ hadolintConfigEither
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
-    res <- Hadolint.lint hadolintConfig fileNames
-    Hadolint.printResultsAndExit Hadolint.Codacy res
+    res <- HadolintLinter.lintIO hadolintConfig fileNames
+    HadolintFormatter.printResults HadolintFormat.Codacy False Nothing  res

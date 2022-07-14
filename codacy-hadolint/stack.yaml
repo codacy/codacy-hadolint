@@ -37,9 +37,15 @@ packages:
 - .
 
 extra-deps:
-  - url: https://github.com/hadolint/hadolint/archive/v1.18.2.tar.gz
-  - ShellCheck-0.7.1@sha256:94a6ee5a38e2668204bc95fdc7539a9a4ca7230984157694409444530c23b5a4,3170
-  - language-docker-9.1.2
+  - url: https://github.com/hadolint/hadolint/archive/v2.10.0.tar.gz
+  - ShellCheck-0.8.0@sha256:353c9322847b661e4c6f7c83c2acf8e5c08b682fbe516c7d46c29605937543df,3297
+  - megaparsec-9.2.1@sha256:0b709575e3440a7bc07ef3f57ada765c1808151d56103d9fe42f6faa9763fe2e,3220
+  - prettyprinter-1.7.1@sha256:9c43c9d8c3cd9f445596e5a2379574bba87f935a4d1fa41b5407ee3cf4edc743,6987
+  - spdx-1.0.0.3@sha256:a83bfd305fed2a23e7643d43a8431380c7569adc33e246a34589eac426ea1853,2116
+  - scientific-0.3.7.0@sha256:76465a82beb2af6ea83ebd00684acc0ffe659e7da7066329931dc8f02fc97507,4826
+  - integer-logarithms-1.0.3.1@sha256:b65e11ec6f4b29c5278716da0544b951a49ab5310608df0fc41eec29f15691d9,3229
+  - primitive-0.7.4.0@sha256:89b88a3e08493b7727fa4089b0692bfbdf7e1e666ef54635f458644eb8358764,2857
+  - language-docker-10.4.3@sha256:5a0b36c6a0051d0a69a9c29086e853702e5240765ae704b34eda0f1da8ee27cd,3810
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.

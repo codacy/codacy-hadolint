@@ -1,34 +1,4 @@
 [ {
-  "patternId" : "DL3013",
-  "title" : "DL3013",
-  "description" : "Pin versions in pip.",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3007",
-  "title" : "DL3007",
-  "description" : "Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3021",
-  "title" : "DL3021",
-  "description" : "`COPY` with more than 2 arguments requires the last argument to end with `/`",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3023",
-  "title" : "DL3023",
-  "description" : "`COPY --from` cannot reference its own `FROM` alias",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3014",
-  "title" : "DL3014",
-  "description" : "Use the `-y` switch.",
-  "parameters" : [ ]
-}, {
-  "patternId" : "SC2026",
-  "title" : "SC2026",
-  "description" : "This word is outside of quotes. Did you intend to 'nest '\"'single quotes'\"' instead'?",
-  "parameters" : [ ]
-}, {
   "patternId" : "SC1066",
   "title" : "SC1066",
   "description" : "Don't use $ on the left side of assignments.",
@@ -37,6 +7,16 @@
   "patternId" : "DL3011",
   "title" : "DL3011",
   "description" : "Valid UNIX ports range from 0 to 65535.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3038",
+  "title" : "DL3038",
+  "description" : "Use the `-y` switch to avoid manual input `dnf install -y `",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3057",
+  "title" : "DL3057",
+  "description" : "`HEALTHCHECK` instruction missing.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3010",
@@ -64,6 +44,11 @@
   "description" : "Use the `--no-cache` switch to avoid the need to use `--update` and remove `/var/cache/apk/*` when done installing packages.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3047",
+  "title" : "DL3047",
+  "description" : "`wget` without flag `--progress` will result in excessively bloated build logs when downloading larger files.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL3016",
   "title" : "DL3016",
   "description" : "Pin versions in `npm`.",
@@ -74,19 +59,44 @@
   "description" : "Pin versions in apk add. Instead of `apk add ` use `apk add =`.",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3012",
-  "title" : "DL3012",
-  "description" : "Provide an email address or URL as maintainer.",
-  "parameters" : [ ]
-}, {
   "patternId" : "SC1081",
   "title" : "SC1081",
   "description" : "Scripts are case sensitive. Use `if`, not `If`.",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3031",
-  "title" : "DL3031",
-  "description" : "Do not use `yum update`",
+  "patternId" : "DL3045",
+  "title" : "DL3045",
+  "description" : "`COPY` to a relative destination without `WORKDIR` set.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3013",
+  "title" : "DL3013",
+  "description" : "Pin versions in pip.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3044",
+  "title" : "DL3044",
+  "description" : "Do not refer to an environment variable within the same `ENV` statement where it is defined.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3007",
+  "title" : "DL3007",
+  "description" : "Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3059",
+  "title" : "DL3059",
+  "description" : "Multiple consecutive `RUN` instructions. Consider consolidation.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3037",
+  "title" : "DL3037",
+  "description" : "Specify version with `zypper install -y [=]`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3050",
+  "title" : "DL3050",
+  "description" : "Superfluous label(s) present.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1077",
@@ -99,14 +109,44 @@
   "description" : "This is a unicode non-breaking space. Delete it and retype as space.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3046",
+  "title" : "DL3046",
+  "description" : "`useradd` without flag `-l` and high UID will result in excessively large Image.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3021",
+  "title" : "DL3021",
+  "description" : "`COPY` with more than 2 arguments requires the last argument to end with `/`",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3036",
+  "title" : "DL3036",
+  "description" : "`zypper clean` missing after zypper use.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL4004",
   "title" : "DL4004",
   "description" : "Multiple `ENTRYPOINT` instructions found.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3060",
+  "title" : "DL3060",
+  "description" : "`yarn cache clean` missing after `yarn install` was run.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL3022",
   "title" : "DL3022",
   "description" : "`COPY --from` should reference a previously defined `FROM` alias",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3054",
+  "title" : "DL3054",
+  "description" : "Label `` is not a valid SPDX license identifier.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3012",
+  "title" : "DL3012",
+  "description" : "Multiple `HEALTHCHECK` instructions.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1007",
@@ -154,6 +194,16 @@
   "description" : "Quote/escape special characters when using `eval`, e.g. `eval \"a=(b)\"`.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3056",
+  "title" : "DL3056",
+  "description" : "Label `` does not conform to semantic versioning.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3053",
+  "title" : "DL3053",
+  "description" : "Label `` is not a valid time format - must be conform to RFC3339.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL3028",
   "title" : "DL3028",
   "description" : "Pin versions in gem install. Instead of `gem install ` use `gem install :`",
@@ -179,6 +229,16 @@
   "description" : "Use only an allowed registry in the FROM image",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3048",
+  "title" : "DL3048",
+  "description" : "Invalid Label Key",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3040",
+  "title" : "DL3040",
+  "description" : "`dnf clean all` missing after dnf command.",
+  "parameters" : [ ]
+}, {
   "patternId" : "SC1083",
   "title" : "SC1083",
   "description" : "This `{/}` is literal. Check expression (missing `;/\\n`?) or quote it.",
@@ -194,6 +254,21 @@
   "description" : "This `\\c` will be a regular `'c'` in this context.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3023",
+  "title" : "DL3023",
+  "description" : "`COPY --from` cannot reference its own `FROM` alias",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3051",
+  "title" : "DL3051",
+  "description" : "Label `` is empty.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3005",
+  "title" : "DL3005",
+  "description" : "Do not use apt-get dist-upgrade.",
+  "parameters" : [ ]
+}, {
   "patternId" : "SC1045",
   "title" : "SC1045",
   "description" : "It's not `foo &; bar`, just `foo & bar`.",
@@ -207,6 +282,11 @@
   "patternId" : "DL3001",
   "title" : "DL3001",
   "description" : "For some bash commands it makes no sense running them in a Docker container like ssh, vim, shutdown, service, ps, free, top, kill, mount, ifconfig.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3042",
+  "title" : "DL3042",
+  "description" : "Avoid cache directory with `pip install --no-cache-dir `.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1010",
@@ -234,14 +314,19 @@
   "description" : "Word is in the form `\"A\"B\"C\"` (B indicated). Did you mean `\"ABC\"` or `\"A\\\"B\\\"C\"`?",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3005",
-  "title" : "DL3005",
-  "description" : "Do not use apt-get upgrade or dist-upgrade.",
+  "patternId" : "DL3049",
+  "title" : "DL3049",
+  "description" : "Label `` is missing.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC2035",
   "title" : "SC2035",
   "description" : "Use `./*glob*` or `-- *glob*` so names with dashes won't become options.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3061",
+  "title" : "DL3061",
+  "description" : "Invalid instruction order. Dockerfile must begin with `FROM`, `ARG` or comment.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1068",
@@ -254,14 +339,44 @@
   "description" : "Pin versions in apt-get install.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3034",
+  "title" : "DL3034",
+  "description" : "Non-interactive switch missing from `zypper` command: `zypper install -y`",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL3004",
   "title" : "DL3004",
   "description" : "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3058",
+  "title" : "DL3058",
+  "description" : "Label `` is not a valid email format - must be conform to RFC5322.",
+  "parameters" : [ ]
+}, {
   "patternId" : "DL4000",
   "title" : "DL4000",
   "description" : "MAINTAINER is deprecated.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3052",
+  "title" : "DL3052",
+  "description" : "Label `` is not a valid URL.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3014",
+  "title" : "DL3014",
+  "description" : "Use the `-y` switch.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "SC2026",
+  "title" : "SC2026",
+  "description" : "This word is outside of quotes. Did you intend to 'nest '\"'single quotes'\"' instead'?",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3041",
+  "title" : "DL3041",
+  "description" : "Specify version with `dnf install -y -`",
   "parameters" : [ ]
 }, {
   "patternId" : "DL4005",
@@ -294,19 +409,29 @@
   "description" : "Use cd ... || exit in case `cd` fails.",
   "parameters" : [ ]
 }, {
-  "patternId" : "SC1079",
-  "title" : "SC1079",
-  "description" : "This is actually an end quote, but due to next char, it looks suspect.",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3017",
-  "title" : "DL3017",
-  "description" : "Do not use `apk upgrade`.",
+  "patternId" : "DL3043",
+  "title" : "DL3043",
+  "description" : "`ONBUILD`, `FROM` or `MAINTAINER` triggered from within `ONBUILD` instruction.",
   "parameters" : [ ]
 }, {
   "patternId" : "SC2039",
   "title" : "SC2039",
   "description" : "In POSIX sh, something is undefined.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL1001",
+  "title" : "DL1001",
+  "description" : "Please refrain from using inline ignore pragmas `# hadolint ignore=DLxxxx`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "SC1079",
+  "title" : "SC1079",
+  "description" : "This is actually an end quote, but due to next char, it looks suspect.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3055",
+  "title" : "DL3055",
+  "description" : "Label `` is not a valid git hash.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3009",
@@ -362,5 +487,10 @@
   "patternId" : "DL3003",
   "title" : "DL3003",
   "description" : "Use WORKDIR to switch to a directory.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3035",
+  "title" : "DL3035",
+  "description" : "Do not use `zypper dist-upgrade`.",
   "parameters" : [ ]
 } ]

@@ -78,34 +78,42 @@ object GenerateDocs {
                              "SC2164")
 
   def main(args: Array[String]): Unit = {
-    val file = File(args(0)).contentAsString
-    val outputDir = args(2)
-    val markdownInputDir = args(3)
-    val hadolintRules = parseRulesFile(args(1))
-    val (descriptionSet, specificationSet) = parseMarkdownTable(file, hadolintRules, outputDir)
+    val tmpDir = args(0)
+    val outputDir = args(1)
+    val repoDir = tmpDir + "/hadolintRepo"
+    val hadolintRules = parseRulesDirectory(repoDir)
+    val (descriptionSet, specificationSet) = parseMarkdownTable(repoDir, hadolintRules)
     writeFiles(specificationSet, descriptionSet, outputDir)
-    moveMarkdownFiles(specificationSet, markdownInputDir, outputDir)
+    moveMarkdownFiles(specificationSet, tmpDir + "/markdown", outputDir)
   }
 
-  def parseRulesFile(filepath: String): Map[String, Specification] = {
-    val file = File(filepath)
-    val lines = file.lines.dropWhile(_.contains("--  RULES  --"))
-    val codeLines = lines.filter(x => (x.contains("code =") || x.contains("severity =")))
-    val parsedCodeLines: List[String] = codeLines.view
-      .map(line => line.replaceAll("code =", "").replaceAll("severity =", "").replaceAll("\"", "").trim)
-      .toList
+  def parseRulesDirectory(hadolintRepoPath: String): Map[String, Specification] = {
+    val ruleDirPath = "/src/Hadolint/Rule"
+    val dir = File(hadolintRepoPath + ruleDirPath )
+
+    val ruleFiles: List[File] = dir.list.toList
+      .filter(file => file.name.contains("DL"))
+
+
+    val parsedCodeLines = for {
+      ruleFile <- ruleFiles
+      codeLines = ruleFile.lineIterator.filter(line => line.contains("code =") || line.contains("severity =")).toList
+      parsedCodeLines: List[String] = codeLines.view
+        .map(line => line.replaceAll("code =", "").replaceAll("severity =", "").replaceAll("\"", "").trim)
+        .toList
+    } yield parsedCodeLines
 
     val rules = for {
-      List(ruleName, level) <- parsedCodeLines.grouped(2).toList
+      List(ruleName, level) <- parsedCodeLines.flatten.grouped(2).toList
       (category, subcategory) = parseRuleCategory(level, ruleName)
     } yield
       (ruleName,
-       Specification(Pattern.Id(ruleName),
-                     parseRuleLevel(level),
-                     category,
-                     subcategory,
-                     Set.empty,
-                     enabled = defaultPatterns.contains(ruleName)))
+        Specification(Pattern.Id(ruleName),
+          parseRuleLevel(level),
+          category,
+          subcategory,
+          Set.empty,
+          enabled = defaultPatterns.contains(ruleName)))
 
     rules.toMap
   }
@@ -131,13 +139,12 @@ object GenerateDocs {
     }
   }
 
-  def parseMarkdownTable(file: String,
-                         hadolintRules: Map[String, Specification],
-                         dir: String): (Set[Description], Set[Specification]) = {
+  def parseMarkdownTable(hadolintRepoPath: String,
+                         hadolintRules: Map[String, Specification]): (Set[Description], Set[Specification]) = {
     val options = new MutableDataSet
     options.set(Parser.EXTENSIONS, util.Arrays.asList(TablesExtension.create()))
     val parser = Parser.builder(options).build
-    val document = parser.parse(file)
+    val document = parser.parse(File(hadolintRepoPath + "/README.md").contentAsString)
 
     document.getChildIterator.asScala.toList
       .collect { case table: TableBlock => table }
@@ -189,7 +196,7 @@ object GenerateDocs {
 
   def tableRowToPattern(tableRow: TableRow): (String, String) = {
     tableRow.getChildIterator.asScala.toList match {
-      case List(rule: TableCell, description: TableCell) =>
+      case List(rule: TableCell, severity: TableCell, description: TableCell) =>
         val ruleName = filterType[Link](rule).headOption
           .fold[String](throw new Exception("Failed parsing tableRow to Pattern"))(_.getText.toString)
         val descriptionStr = description.getText.toString

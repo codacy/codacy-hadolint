@@ -2,8 +2,8 @@ name:                codacy-hadolint
 version:             0.1.0.0
 github:              "codacy/codacy-hadolint"
 license:             MIT
-author:              "João Lopes"
-maintainer:          "lopes@codacy.com"
+author:              "Codacy"
+maintainer:          "code@codacy.com"
 copyright:           "2018 Codacy"
 
 extra-source-files:
@@ -21,7 +21,7 @@ library:
     - text
     - aeson
     - bytestring
-    - hadolint == 1.18.2
+    - hadolint == 2.10.0
     - containers
     - directory
     - filemanip
