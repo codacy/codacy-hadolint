@@ -1,15 +1,15 @@
 version: 2.1
 
 orbs:
-  codacy: codacy/base@6.1.4
-  codacy_plugins_test: codacy/plugins-test@0.15.4
+  codacy: codacy/base@9.3.5
+  codacy_plugins_test: codacy/plugins-test@1.1.1
 
 workflows:
   version: 2
   compile_test_deploy:
     jobs:
       - codacy/checkout_and_version
-      - codacy/sbt:
+      - codacy/shell:
           name: publish_docker_local
           cmd: |
             docker build --no-cache -t $CIRCLE_PROJECT_REPONAME:latest -f Dockerfile .
