@@ -6,3 +6,4 @@ docs-generator/.idea/
 .tmp/
 .metals
 .vscode
+.git/
