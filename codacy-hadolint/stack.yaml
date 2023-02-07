@@ -18,7 +18,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-16.18
+resolver: lts-20.8
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -37,9 +37,9 @@ packages:
 - .
 
 extra-deps:
-  - url: https://github.com/hadolint/hadolint/archive/v1.18.2.tar.gz
-  - ShellCheck-0.7.1@sha256:94a6ee5a38e2668204bc95fdc7539a9a4ca7230984157694409444530c23b5a4,3170
-  - language-docker-9.1.2
+  - url: https://github.com/hadolint/hadolint/archive/v2.12.0.tar.gz
+  - ShellCheck-0.8.0
+  - language-docker-11.0.0
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # using the same syntax as the packages field.

@@ -17,14 +17,35 @@ dependencies:
 library:
   source-dirs: src
   dependencies:
+    - &Prettyprint prettyprinter >= 1.7.0
+    - &ShellCheck ShellCheck >=0.8.0
     - &bytestring bytestring >=0.10
-    - text
+    - &split split >=0.2
+    - hadolint == 2.12.0
+    - containers
+    - filemanip
+    - Cabal
+    - HsYAML
     - aeson
     - bytestring
-    - hadolint == 1.18.2
-    - containers
-    - directory
-    - filemanip
+    - colourista
+    - cryptonite
+    - deepseq >= 1.4.4 && < 1.5
+    - directory >= 1.3.0
+    - email-validate
+    - filepath
+    - foldl
+    - gitrev >=1.3.1
+    - ilist
+    - mtl
+    - network-uri
+    - parallel
+    - parsec >= 3.1.14
+    - semver
+    - spdx
+    - time
+    - timerep >= 2.0
+    - void
 
 executables:
   codacy-hadolint:
