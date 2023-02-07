@@ -7,7 +7,7 @@ maintainer:          "lopes@codacy.com"
 copyright:           "2018 Codacy"
 
 extra-source-files:
-- README.md
+- ../README.md
 
 description:         Please see the README on GitHub at <https://github.com/codacy/codacy-hadolint#readme>
 
@@ -44,6 +44,7 @@ library:
     - time
     - timerep >= 2.0
     - void
+    - text
 
 executables:
   codacy-hadolint:
