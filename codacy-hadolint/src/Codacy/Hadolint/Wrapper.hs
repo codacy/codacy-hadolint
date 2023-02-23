@@ -11,7 +11,7 @@ import Data.Text (Text, pack)
 import Data.List (find, (\\))
 import qualified Data.Set as Set
 import qualified Hadolint.Lint as Hadolint 
-import qualified Hadolint.Rules as Rules
+import qualified Hadolint.Rule as Rules
 import qualified Hadolint.Config as Config
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
