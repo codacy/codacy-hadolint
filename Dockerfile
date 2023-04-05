@@ -27,7 +27,7 @@ RUN curl -sSL https://github.com/upx/upx/releases/download/v3.94/upx-3.94-amd64_
   | tar -x --xz --strip-components 1 upx-3.94-amd64_linux/upx \
   && ./upx --best --ultra-brute /root/.local/bin/codacy-hadolint
 
-FROM alpine:3.17.0 AS distro
+FROM alpine:3.17.3 AS distro
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
 RUN adduser -D -u 2004 docker
 COPY codacy-hadolint/docs/ /docs/
