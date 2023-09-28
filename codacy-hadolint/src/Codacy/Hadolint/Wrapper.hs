@@ -122,4 +122,4 @@ lint = do
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
     res <- Hadolint.lintIO hadolintConfig fileNames
-    Formatter.printResults Hadolint.Codacy res
+    Formatter.printResults res
