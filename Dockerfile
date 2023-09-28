@@ -1,4 +1,4 @@
-FROM debian:buster-20211011-slim AS builder
+FROM buster-20230919-slim AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -32,11 +32,11 @@ COPY codacy-hadolint /opt/codacy-hadolint
 RUN stack install --ghc-options="-fPIC"
 
 # COMPRESS WITH UPX
-RUN curl -sSL https://github.com/upx/upx/releases/download/v3.94/upx-3.94-amd64_linux.tar.xz \
-  | tar -x --xz --strip-components 1 upx-3.94-amd64_linux/upx \
+RUN curl -sSL https://github.com/upx/upx/releases/download/v4.1.0/upx-4.1.0-amd64_linux.tar.xz \
+  | tar -x --xz --strip-components 1 upx-4.1.0-amd64_linux/upx \
   && ./upx --best --ultra-brute /root/.local/bin/codacy-hadolint
 
-FROM alpine:3.17.0 AS distro
+FROM alpine:3.18.3 AS distro
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
 RUN adduser -D -u 2004 docker
 COPY codacy-hadolint/docs/ /docs/
