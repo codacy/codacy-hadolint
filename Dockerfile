@@ -1,4 +1,4 @@
-FROM buster-20211011-slim AS builder
+FROM buster-20230919-slim AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -36,7 +36,7 @@ RUN curl -sSL https://github.com/upx/upx/releases/download/v4.1.0/upx-4.1.0-amd6
   | tar -x --xz --strip-components 1 upx-4.1.0-amd64_linux/upx \
   && ./upx --best --ultra-brute /root/.local/bin/codacy-hadolint
 
-FROM alpine:3.18.3 AS distro
+FROM alpine:3.17.0 AS distro
 COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
 RUN adduser -D -u 2004 docker
 COPY codacy-hadolint/docs/ /docs/
