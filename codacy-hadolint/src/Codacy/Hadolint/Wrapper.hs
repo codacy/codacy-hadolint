@@ -13,6 +13,7 @@ import qualified Data.Set as Set
 import qualified Hadolint.Rule as Rules
 import qualified Hadolint.Config as Config
 import qualified Hadolint.Formatter as Formatter
+import qualified Hadolint.Lint as Hadolint
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
 import qualified System.FilePath.Find as Find
@@ -60,7 +61,7 @@ readAndParseConfigFile = do
 defaultConfig :: Config.Configuration
 defaultConfig = Config.Configuration {
     ignoreRules = []
-    , rulesConfig = Config.Configuration Set.empty
+    , allowedRegistries = Config.Configuration Set.empty
 }
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
@@ -68,7 +69,7 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
         Just (Tool _ (Just patterns)) -> Config.Configuration {
             ignoreRules = ignoredFromPatterns docs patterns
-            , rulesConfig = Config.Configuration Set.empty
+            , allowedRegistries = Config.Configuration Set.empty
         }
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
@@ -84,6 +85,7 @@ findTool :: [Tool] -> Maybe Tool
 findTool = find (\tool -> name tool == "hadolint")
 
 readHadolintConfigFile :: Config.Configuration -> IO (Either String Config.Configuration)
+readHadolintConfigFile = Config.getConfigFromFile Nothing
 
 filesOrFind :: Maybe CodacyConfig -> IO (NonEmpty.NonEmpty String)
 filesOrFind (Just (CodacyConfig (x : xs) _)) = return (x :| xs)
@@ -119,5 +121,5 @@ lint = do
     hadolintConfig <- readHadolintConfig $ hadolintConfigEither
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
-    res <- Hadolint.lint hadolintConfig fileNames
+    res <- Hadolint.lintIO hadolintConfig fileNames
     Formatter.printResults Hadolint.Codacy res
