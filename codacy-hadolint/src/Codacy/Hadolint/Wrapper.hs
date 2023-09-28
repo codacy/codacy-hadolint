@@ -57,16 +57,16 @@ readAndParseConfigFile = do
         Left err -> putStrLn err >> exitFailure
         Right config -> return config
 
-defaultConfig :: Hadolint.Configuration
-defaultConfig = Hadolint.Configuration {
+defaultConfig :: Hadolint.lint
+defaultConfig = Hadolint.lint {
     ignoreRules = []
     , rulesConfig = Rules.RulesConfig Set.empty
 }
 
-convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Hadolint.Configuration
+convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Hadolint.lint
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
-        Just (Tool _ (Just patterns)) -> Hadolint.Configuration {
+        Just (Tool _ (Just patterns)) -> Hadolint.lint {
             ignoreRules = ignoredFromPatterns docs patterns
             , rulesConfig = Rules.RulesConfig Set.empty
         }
@@ -83,7 +83,7 @@ ignoredFromPatterns allPatterns configPatterns = map pack patternsToIgnore
 findTool :: [Tool] -> Maybe Tool
 findTool = find (\tool -> name tool == "hadolint")
 
-readHadolintConfigFile :: Hadolint.Configuration -> IO (Either String Hadolint.Configuration)
+readHadolintConfigFile :: Hadolint.lint -> IO (Either String Hadolint.lint)
 readHadolintConfigFile = Config.applyConfig Nothing 
 
 filesOrFind :: Maybe CodacyConfig -> IO (NonEmpty.NonEmpty String)
@@ -105,7 +105,7 @@ parseFileNames :: NonEmpty.NonEmpty String -> IO (NonEmpty.NonEmpty String)
 parseFileNames filePaths = do
     return (NonEmpty.map(\str -> replace str "./" "") filePaths)
     
-readHadolintConfig :: Either String Hadolint.Configuration -> IO (Hadolint.Configuration)
+readHadolintConfig :: Either String Hadolint.lint -> IO (Hadolint.lint)
 readHadolintConfig hadolintConfigEither = 
     case hadolintConfigEither of 
     Left err -> putStrLn err >> exitFailure
