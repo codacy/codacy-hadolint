@@ -1,4 +1,4 @@
-FROM buster-20230919-slim AS builder
+FROM buster-20211011-slim AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
