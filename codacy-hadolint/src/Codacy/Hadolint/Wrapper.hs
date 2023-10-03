@@ -62,16 +62,38 @@ defaultConfig :: Config.Configuration
 defaultConfig = Config.Configuration {
     ignoreRules = []
     , allowedRegistries = Config.Configuration Set.empty
+    , noFail = 0	 
+    , noColor = 0	 
+    , verbose = 0	 
+    , format = def
+    , errorRules = []
+    , warningRules = []	 
+    , infoRules = []	 
+    , styleRules = []
+    , labelSchema = mempty
+    , strictLabels = 0 
+    , disableIgnorePragma = 0 
+    , failureThreshold = def
 }
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
         Just (Tool _ (Just patterns)) -> Config.Configuration {
-            ignoreRules = ignoredFromPatterns docs patterns
+            ignoreRules = [ignoredFromPatterns,docs,patterns]
             , allowedRegistries = Config.Configuration Set.empty
-            , noFail = 0
-            , noColor = 0
+            , noFail = 0	 
+            , noColor = 0	 
+            , verbose = 0	 
+            , format = def
+            , errorRules = []
+            , warningRules = []	 
+            , infoRules = []	 
+            , styleRules = []
+            , labelSchema = mempty
+            , strictLabels = 0 
+            , disableIgnorePragma = 0 
+            , failureThreshold = def
         }
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
