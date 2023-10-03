@@ -70,6 +70,8 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
         Just (Tool _ (Just patterns)) -> Config.Configuration {
             ignoreRules = ignoredFromPatterns docs patterns
             , allowedRegistries = Config.Configuration Set.empty
+            , noFail = 0
+            , noColor = 0
         }
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
@@ -122,4 +124,4 @@ lint = do
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
     res <- Hadolint.lintIO hadolintConfig fileNames
-    Formatter.printResults res
+    Formatter.printResults Hadolint.Codacy res
