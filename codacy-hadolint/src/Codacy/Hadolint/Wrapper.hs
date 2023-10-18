@@ -14,6 +14,7 @@ import qualified Hadolint.Lint as Hadolint
 import qualified Hadolint.Config as Config
 import qualified Hadolint.Formatter as Formatter
 import qualified Hadolint.Formatter.Format as Format
+import qualified Hadolint.Formatter.TTY as TTY
 import qualified Hadolint.Rule as Rule
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
@@ -63,7 +64,7 @@ defaultConfig = Config.Configuration
     False
     False
     False
-    Format.OutputFormat.TTY
+    TTY
     mempty
     mempty
     mempty
@@ -73,7 +74,7 @@ defaultConfig = Config.Configuration
     mempty
     False
     False
-    Format.OutputFormat.DLInfoC
+    Rule.DLSeverity
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
@@ -82,7 +83,7 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
             False
             False
             False
-            Format.OutputFormat.TTY
+            TTY
             mempty
             mempty
             mempty
@@ -92,7 +93,7 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
             mempty
             False
             False
-            Format.OutputFormat.DLInfoC
+            Rule.DLSeverity
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
 
