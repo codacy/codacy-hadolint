@@ -13,6 +13,7 @@ import qualified Data.Set as Set
 import qualified Hadolint.Lint as Hadolint 
 import qualified Hadolint.Config as Config
 import qualified Hadolint.Formatter as Formatter
+import qualified Hadolint.Formatter.Format as Format
 import qualified Hadolint.Rule as Rule
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
@@ -58,38 +59,21 @@ readAndParseConfigFile = do
         Left err -> putStrLn err >> exitFailure
         Right config -> return config
 
-defaultConfig :: Config.Configuration { 
-    noFail :: Bool,
-    noColor :: Bool,
-    verbose :: Bool,
-    format :: OutputFormat,
-    errorRules :: [RuleCode],
-    warningRules :: [RuleCode],
-    infoRules :: [RuleCode],
-    styleRules :: [RuleCode],
-    ignoreRules :: [RuleCode],
-    allowedRegistries :: Set.Set Registry,
-    labelSchema :: LabelSchema,
-    strictLabels :: Bool,
-    disableIgnorePragma :: Bool,
-    failureThreshold :: DLSeverity
-    }
-defaultConfig = Config.Configuration {
-    noFail = False,
-    noColor = False,
-    verbose = False,
-    format = TTY,
-    errorRules = mempty,
-    warningRules = mempty,
-    infoRules = mempty,
-    styleRules = mempty,
-    ignoreRules = mempty,
-    allowedRegistries = mempty,
-    labelSchema = mempty,
-    strictLabels = False,
-    disableIgnorePragma = False,
-    failureThreshold = Rule.DLSeverity.DLInfoC
-}
+defaultConfig = Config.Configuration
+    False
+    False
+    False
+    Format.OutputFormat.TTY
+    mempty
+    mempty
+    mempty
+    mempty
+    mempty
+    mempty
+    mempty
+    False
+    False
+    Format.OutputFormat.DLInfoC
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
@@ -98,7 +82,7 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
             False
             False
             False
-            fFormatter.Format.OutputFormat.TTY
+            Format.OutputFormat.TTY
             mempty
             mempty
             mempty
@@ -108,7 +92,7 @@ convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
             mempty
             False
             False
-            Formatter.Format.OutputFormat.DLInfoC
+            Format.OutputFormat.DLInfoC
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
 
@@ -160,4 +144,4 @@ lint = do
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
     res <- Hadolint.lint hadolintConfig fileNames
-    Hadolint.printResults Hadolint.Codacy res
+    Formatter.printResults Hadolint.Codacy res
