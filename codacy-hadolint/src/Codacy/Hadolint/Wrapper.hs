@@ -10,10 +10,9 @@ import Data.Aeson hiding (Result)
 import Data.Text (Text, pack)
 import Data.List (find, (\\))
 import qualified Data.Set as Set
-import qualified Hadolint.Rule as Rules
+import qualified Hadolint.Lint as Hadolint 
+import qualified Hadolint.Rules as Rules
 import qualified Hadolint.Config as Config
-import qualified Hadolint.Formatter as Formatter
-import qualified Hadolint.Lint as Hadolint
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
 import qualified System.FilePath.Find as Find
@@ -58,42 +57,58 @@ readAndParseConfigFile = do
         Left err -> putStrLn err >> exitFailure
         Right config -> return config
 
-defaultConfig :: Config.Configuration
+defaultConfig :: Config.Configuration 
+{ 
+    noFail :: Bool,
+    noColor :: Bool,
+    verbose :: Bool,
+    format :: OutputFormat,
+    errorRules :: [RuleCode],
+    warningRules :: [RuleCode],
+    infoRules :: [RuleCode],
+    styleRules :: [RuleCode],
+    ignoreRules :: [RuleCode],
+    allowedRegistries :: Set.Set Registry,
+    labelSchema :: LabelSchema,
+    strictLabels :: Bool,
+    disableIgnorePragma :: Bool,
+    failureThreshold :: DLSeverity
+}
 defaultConfig = Config.Configuration {
-    ignoreRules = []
-    , allowedRegistries = Config.Configuration Set.empty
-    , noFail = 0	 
-    , noColor = 0	 
-    , verbose = 0	 
-    , format = def
-    , errorRules = []
-    , warningRules = []	 
-    , infoRules = []	 
-    , styleRules = []
-    , labelSchema = mempty
-    , strictLabels = 0 
-    , disableIgnorePragma = 0 
-    , failureThreshold = def
+    noFail = False,
+    noColor = False,
+    verbose = False,
+    format = TTY,
+    errorRules = mempty,
+    warningRules = mempty,
+    infoRules = mempty,
+    styleRules = mempty,
+    ignoreRules = mempty,
+    allowedRegistries = mempty,
+    labelSchema = mempty,
+    strictLabels = False,
+    disableIgnorePragma = False,
+    failureThreshold = DLInfoC
 }
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
         Just (Tool _ (Just patterns)) -> Config.Configuration {
-            ignoreRules = [ignoredFromPatterns,docs,patterns]
-            , allowedRegistries = Config.Configuration Set.empty
-            , noFail = 0	 
-            , noColor = 0	 
-            , verbose = 0	 
-            , format = def
-            , errorRules = []
-            , warningRules = []	 
-            , infoRules = []	 
-            , styleRules = []
-            , labelSchema = mempty
-            , strictLabels = 0 
-            , disableIgnorePragma = 0 
-            , failureThreshold = def
+            noFail = False,
+            noColor = False,
+            verbose = False,
+            format = TTY,
+            errorRules = mempty,
+            warningRules = mempty,
+            infoRules = mempty,
+            styleRules = mempty,
+            ignoreRules = ignoredFromPatterns docs patterns,
+            allowedRegistries = mempty,
+            labelSchema = mempty,
+            strictLabels = False,
+            disableIgnorePragma = False,
+            failureThreshold = DLInfoC
         }
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
@@ -109,7 +124,7 @@ findTool :: [Tool] -> Maybe Tool
 findTool = find (\tool -> name tool == "hadolint")
 
 readHadolintConfigFile :: Config.Configuration -> IO (Either String Config.Configuration)
-readHadolintConfigFile = Config.getConfigFromFile Nothing
+readHadolintConfigFile = Config.applyPartialConfiguration Nothing 
 
 filesOrFind :: Maybe CodacyConfig -> IO (NonEmpty.NonEmpty String)
 filesOrFind (Just (CodacyConfig (x : xs) _)) = return (x :| xs)
@@ -145,5 +160,5 @@ lint = do
     hadolintConfig <- readHadolintConfig $ hadolintConfigEither
     filePaths <- filesOrFind maybeConfig
     fileNames <- parseFileNames filePaths
-    res <- Hadolint.lintIO hadolintConfig fileNames
-    Formatter.printResults res
+    res <- Hadolint.lint hadolintConfig fileNames
+    Hadolint.printResults Hadolint.Codacy res
