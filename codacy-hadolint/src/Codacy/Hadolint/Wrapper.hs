@@ -12,6 +12,8 @@ import Data.List (find, (\\))
 import qualified Data.Set as Set
 import qualified Hadolint.Lint as Hadolint 
 import qualified Hadolint.Config as Config
+import qualified Hadolint.Formatter as Formatter
+import qualified Hadolint.Rule as Rule
 import System.Exit (exitFailure, exitSuccess)
 import System.Directory (doesFileExist)
 import qualified System.FilePath.Find as Find
@@ -86,28 +88,27 @@ defaultConfig = Config.Configuration {
     labelSchema = mempty,
     strictLabels = False,
     disableIgnorePragma = False,
-    failureThreshold = DLInfoC
+    failureThreshold = Rule.DLSeverity.DLInfoC
 }
 
 convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Configuration
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
-        Just (Tool _ (Just patterns)) -> Config.Configuration {
-            noFail = False,
-            noColor = False,
-            verbose = False,
-            format = TTY,
-            errorRules = mempty,
-            warningRules = mempty,
-            infoRules = mempty,
-            styleRules = mempty,
-            ignoreRules = ignoredFromPatterns docs patterns,
-            allowedRegistries = mempty,
-            labelSchema = mempty,
-            strictLabels = False,
-            disableIgnorePragma = False,
-            failureThreshold = DLInfoC
-        }
+        Just (Tool _ (Just patterns)) -> Config.Configuration
+            False,
+            False,
+            False,
+            fFormatter.Format.OutputFormat.TTY,
+            mempty,
+            mempty,
+            mempty,
+            mempty,
+            ignoredFromPatterns docs patterns,
+            mempty,
+            mempty,
+            False,
+            False,
+            Formatter.Format.OutputFormat.DLInfoC
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
 
