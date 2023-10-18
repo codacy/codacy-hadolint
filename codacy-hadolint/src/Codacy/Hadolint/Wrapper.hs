@@ -57,8 +57,7 @@ readAndParseConfigFile = do
         Left err -> putStrLn err >> exitFailure
         Right config -> return config
 
-defaultConfig :: Config.Configuration 
-{ 
+defaultConfig :: Config.Configuration { 
     noFail :: Bool,
     noColor :: Bool,
     verbose :: Bool,
@@ -73,7 +72,7 @@ defaultConfig :: Config.Configuration
     strictLabels :: Bool,
     disableIgnorePragma :: Bool,
     failureThreshold :: DLSeverity
-}
+    }
 defaultConfig = Config.Configuration {
     noFail = False,
     noColor = False,
