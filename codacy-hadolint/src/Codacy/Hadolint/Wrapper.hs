@@ -95,19 +95,19 @@ convertToHadolintConfigs :: [DocsPattern] -> Maybe CodacyConfig -> Config.Config
 convertToHadolintConfigs docs (Just (CodacyConfig _ tools)) =
     case findTool tools of
         Just (Tool _ (Just patterns)) -> Config.Configuration
-            False,
-            False,
-            False,
-            fFormatter.Format.OutputFormat.TTY,
-            mempty,
-            mempty,
-            mempty,
-            mempty,
-            ignoredFromPatterns docs patterns,
-            mempty,
-            mempty,
-            False,
-            False,
+            False
+            False
+            False
+            fFormatter.Format.OutputFormat.TTY
+            mempty
+            mempty
+            mempty
+            mempty
+            ignoredFromPatterns docs patterns
+            mempty
+            mempty
+            False
+            False
             Formatter.Format.OutputFormat.DLInfoC
         _ -> defaultConfig
 convertToHadolintConfigs _ _ = defaultConfig
