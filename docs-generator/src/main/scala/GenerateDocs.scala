@@ -112,8 +112,8 @@ object GenerateDocs {
 
   def parseRuleLevel(level: String): Level = {
     level match {
-      case "WarningC" => Result.Level.Warn
-      case "ErrorC" => Result.Level.Err
+      case "DLWarningC" => Result.Level.Warn
+      case "DLErrorC" => Result.Level.Err
       case _ => Result.Level.Info
     }
   }
@@ -125,7 +125,7 @@ object GenerateDocs {
 
       case _ =>
         level match {
-          case "InfoC" => (Pattern.Category.CodeStyle, None)
+          case "DLInfoC" => (Pattern.Category.CodeStyle, None)
           case _ => (Pattern.Category.ErrorProne, None)
         }
     }
@@ -138,7 +138,6 @@ object GenerateDocs {
     options.set(Parser.EXTENSIONS, util.Arrays.asList(TablesExtension.create()))
     val parser = Parser.builder(options).build
     val document = parser.parse(file)
-
     document.getChildIterator.asScala.toList
       .collect { case table: TableBlock => table }
       .flatMap(filterType[TableBody])
@@ -165,6 +164,7 @@ object GenerateDocs {
            ))
       }
       .combineAll
+      
   }
 
   private def getVersion: String = {
@@ -189,7 +189,8 @@ object GenerateDocs {
 
   def tableRowToPattern(tableRow: TableRow): (String, String) = {
     tableRow.getChildIterator.asScala.toList match {
-      case List(rule: TableCell, description: TableCell) =>
+      case List(rule: TableCell, severity: TableCell, description: TableCell) =>
+      //Hadolint pattern's list has 3 values: ruleid, default severity and description
         val ruleName = filterType[Link](rule).headOption
           .fold[String](throw new Exception("Failed parsing tableRow to Pattern"))(_.getText.toString)
         val descriptionStr = description.getText.toString
