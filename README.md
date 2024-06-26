@@ -30,9 +30,7 @@ To update the Hadolint docs :
     $ ./scripts/generate.sh
 
 ## Update version
-1. Update `.hadolint-version`
-2. Update `codacy-hadolint/stack.yaml`
-3. Update `codacy-hadolint/package.yaml`
+1. Update `.tool_version`
 
 ## Docs
 

@@ -1,0 +1,801 @@
+{
+  "name" : "hadolint",
+  "version" : "2.12.0",
+  "patterns" : [ {
+    "patternId" : "DL1001",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3000",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3001",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3002",
+    "level" : "Warning",
+    "category" : "Security",
+    "subcategory" : "Auth",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3003",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3004",
+    "level" : "Error",
+    "category" : "Security",
+    "subcategory" : "Auth",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3005",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3006",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3007",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3008",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3009",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3010",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3011",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3012",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3013",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3014",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3015",
+    "level" : "Info",
+    "category" : "Security",
+    "subcategory" : "InsecureModulesLibraries",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3016",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3018",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3019",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3020",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3021",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3022",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3023",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3024",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL3025",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3026",
+    "level" : "Error",
+    "category" : "Security",
+    "subcategory" : "InsecureModulesLibraries",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3027",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3028",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3029",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3030",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3032",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3033",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3034",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3035",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3036",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3037",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3038",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3040",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3041",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3042",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3043",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3044",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3045",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3046",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3047",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3048",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3049",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3050",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3051",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3052",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3053",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3054",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3055",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3056",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3057",
+    "level" : "Info",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3058",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3059",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3060",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3061",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL4000",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL4001",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL4003",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL4004",
+    "level" : "Error",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL4005",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "DL4006",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "SC1000",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1001",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1007",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1010",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1018",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1035",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1045",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1065",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1066",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1068",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1077",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1078",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1079",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1081",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1083",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1086",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1087",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1095",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1097",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1098",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC1099",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2002",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2015",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2026",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2028",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2035",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2039",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "SC2046",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2086",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2140",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2154",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  }, {
+    "patternId" : "SC2155",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "SC2164",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : true
+  } ]
+}

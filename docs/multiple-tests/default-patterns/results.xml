@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="4.3">
+    <file name="Dockerfile">
+        <error source="DL3006" line="4" message="Always tag the version of an image explicitly"
+            severity="warning" />
+        <error source="DL3011" line="7" message="Valid UNIX ports range from 0 to 65535"
+            severity="error" />
+    </file>
+</checkstyle>

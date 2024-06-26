@@ -1,47 +1,55 @@
-FROM debian:buster-20230919-slim AS builder
+ARG TOOL_VERSION=2.12.0
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# Development image used to build the codacy-hadolint wrapper
+# Explicitly adding go.mod and go.sum avoids re-downloading dependencies on every build
+# Go builds static binaries by default, -ldflags="-s -w" strips debug information and reduces the binary size
 
-RUN apt-get update \
-  && apt-get install --no-install-recommends -y \
-  build-essential=12.6 \
-  libffi-dev=3.2.* \
-  libgmp-dev=2:6.1.* \
-  zlib1g-dev=1:1.2.* \
-  curl=7.64.* \
-  ca-certificates \
-  git=1:2.20.* \
-  netbase=5.6  \
-  locales \
-  && curl -sSL https://get.haskellstack.org/ | sh \
-  && rm -rf /var/lib/apt/lists/*
+FROM golang:1.22-alpine3.20 as builder
 
-# Set locale in docker. This appears to stem from a bug in glibc: https://github.com/hadolint/hadolint/issues/848
-# The Language has to be set to en_US.UTF-8, as otherwise we receive an invalid character
-RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
-    locale-gen
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+WORKDIR /src
 
-WORKDIR /opt/codacy-hadolint/
-COPY codacy-hadolint/stack.yaml codacy-hadolint/package.yaml /opt/codacy-hadolint/
-RUN stack --no-terminal --install-ghc test --only-dependencies
+COPY go.mod go.mod
+COPY go.sum go.sum
+RUN go mod download
 
-COPY codacy-hadolint /opt/codacy-hadolint
-RUN stack install --ghc-options="-fPIC"
+COPY cmd cmd
+COPY internal internal
+RUN go build -o bin/codacy-hadolint -ldflags="-s -w" ./cmd/tool
 
-# COMPRESS WITH UPX
-RUN curl -sSL https://github.com/upx/upx/releases/download/v4.1.0/upx-4.1.0-amd64_linux.tar.xz \
-  | tar -x --xz --strip-components 1 upx-4.1.0-amd64_linux/upx \
-  && ./upx --best --ultra-brute /root/.local/bin/codacy-hadolint
+# Generate the documentation
 
-FROM alpine:3.18.3 AS distro
-COPY --from=builder /root/.local/bin/codacy-hadolint /bin/
-RUN adduser -D -u 2004 docker
-COPY codacy-hadolint/docs/ /docs/
-RUN ["chown", "-R", "docker:docker", "/docs"]
-WORKDIR /src/
-USER docker
-ENTRYPOINT ["/bin/codacy-hadolint"]
+FROM sbtscala/scala-sbt:eclipse-temurin-jammy-11.0.22_7_1.9.8_2.13.12 as docs-generator
 
+WORKDIR /app
+
+COPY .tool_version .tool_version
+COPY docs docs
+COPY docs-generator docs-generator
+COPY scripts scripts
+RUN ./scripts/generate.sh
+
+# Hadolint official image used to copy the hadolint binary
+
+FROM hadolint/hadolint:$TOOL_VERSION as hadolint-cli
+
+# Compress binaries for smaller image size
+
+FROM alpine:3.20 as compressor
+
+RUN apk add --no-cache upx
+
+COPY --from=builder /src/bin/codacy-hadolint /src/bin/codacy-hadolint
+RUN upx --lzma /src/bin/codacy-hadolint
+
+# Final published image for the codacy-hadolint wrapper
+# Tries to be as small as possible with only the Go static binary, the docs and the hadolint binary
+
+FROM alpine:3.20
+
+RUN adduser -u 2004 -D docker
+
+COPY --from=docs-generator --chown=docker:docker /app/docs /docs
+COPY --from=hadolint-cli /bin/hadolint /usr/bin/hadolint
+COPY --from=compressor /src/bin /dist/bin
+
+CMD [ "/dist/bin/codacy-hadolint" ]

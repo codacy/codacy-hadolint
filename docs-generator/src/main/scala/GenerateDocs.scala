@@ -104,7 +104,7 @@ object GenerateDocs {
                      parseRuleLevel(level),
                      category,
                      subcategory,
-                     Set.empty,
+                     Option(Pattern.ScanType.IaC),
                      enabled = defaultPatterns.contains(ruleName)))
 
     rules.toMap
@@ -149,8 +149,7 @@ object GenerateDocs {
              Description(Pattern.Id(ruleName),
                          Pattern.Title(ruleName),
                          Option(Pattern.DescriptionText(description)),
-                         None,
-                         Set.empty)
+                         None)
            ),
            Set(
              hadolintRules
@@ -158,8 +157,8 @@ object GenerateDocs {
                           Specification(Pattern.Id(ruleName),
                                         Result.Level.Info,
                                         Pattern.Category.CodeStyle,
-                                        None,
-                                        Set.empty,
+                                        subcategory = None,
+                                        Option(Pattern.ScanType.IaC),
                                         enabled = defaultPatterns.contains(ruleName)))
            ))
       }
@@ -168,7 +167,7 @@ object GenerateDocs {
   }
 
   private def getVersion: String = {
-    val repoRoot: File = File("../.hadolint-version")
+    val repoRoot: File = File("../.tool_version")
     repoRoot.lines.mkString("")
   }
 

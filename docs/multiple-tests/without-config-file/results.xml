@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="4.3">
+    <file name="workdir.dockerfile">
+        <error source="DL3003" line="7" message="Use WORKDIR to switch to a directory"
+            severity="warning" />
+    </file>
+</checkstyle>
