@@ -4,5 +4,10 @@ docs-generator/project/project/
 docs-generator/.idea/
 .stack-work/
 .tmp/
+.bloop/
+.bsp/
+metals.sbt
 .metals
 .vscode
+.idea
+.codacyrc

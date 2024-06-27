@@ -104,7 +104,7 @@ object GenerateDocs {
                      parseRuleLevel(level),
                      category,
                      subcategory,
-                     Set.empty,
+                     Option(Pattern.ScanType.IaC),
                      enabled = defaultPatterns.contains(ruleName)))
 
     rules.toMap
@@ -112,8 +112,8 @@ object GenerateDocs {
 
   def parseRuleLevel(level: String): Level = {
     level match {
-      case "WarningC" => Result.Level.Warn
-      case "ErrorC" => Result.Level.Err
+      case "DLWarningC" => Result.Level.Warn
+      case "DLErrorC" => Result.Level.Err
       case _ => Result.Level.Info
     }
   }
@@ -125,7 +125,7 @@ object GenerateDocs {
 
       case _ =>
         level match {
-          case "InfoC" => (Pattern.Category.CodeStyle, None)
+          case "DLInfoC" => (Pattern.Category.CodeStyle, None)
           case _ => (Pattern.Category.ErrorProne, None)
         }
     }
@@ -138,7 +138,6 @@ object GenerateDocs {
     options.set(Parser.EXTENSIONS, util.Arrays.asList(TablesExtension.create()))
     val parser = Parser.builder(options).build
     val document = parser.parse(file)
-
     document.getChildIterator.asScala.toList
       .collect { case table: TableBlock => table }
       .flatMap(filterType[TableBody])
@@ -150,8 +149,7 @@ object GenerateDocs {
              Description(Pattern.Id(ruleName),
                          Pattern.Title(ruleName),
                          Option(Pattern.DescriptionText(description)),
-                         None,
-                         Set.empty)
+                         None)
            ),
            Set(
              hadolintRules
@@ -159,16 +157,17 @@ object GenerateDocs {
                           Specification(Pattern.Id(ruleName),
                                         Result.Level.Info,
                                         Pattern.Category.CodeStyle,
-                                        None,
-                                        Set.empty,
+                                        subcategory = None,
+                                        Option(Pattern.ScanType.IaC),
                                         enabled = defaultPatterns.contains(ruleName)))
            ))
       }
       .combineAll
+      
   }
 
   private def getVersion: String = {
-    val repoRoot: File = File("../.hadolint-version")
+    val repoRoot: File = File("../.tool_version")
     repoRoot.lines.mkString("")
   }
 
@@ -189,7 +188,8 @@ object GenerateDocs {
 
   def tableRowToPattern(tableRow: TableRow): (String, String) = {
     tableRow.getChildIterator.asScala.toList match {
-      case List(rule: TableCell, description: TableCell) =>
+      case List(rule: TableCell, severity: TableCell, description: TableCell) =>
+      //Hadolint pattern's list has 3 values: ruleid, default severity and description
         val ruleName = filterType[Link](rule).headOption
           .fold[String](throw new Exception("Failed parsing tableRow to Pattern"))(_.getText.toString)
         val descriptionStr = description.getText.toString

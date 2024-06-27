@@ -1,28 +1,27 @@
 version: 2.1
 
 orbs:
-  codacy: codacy/base@10.2.2
-  codacy_plugins_test: codacy/plugins-test@1.1.1
+  codacy: codacy/base@12.1.1
+  codacy_plugins_test: codacy/plugins-test@2.0.11
 
 workflows:
-  version: 2
   compile_test_deploy:
     jobs:
       - codacy/checkout_and_version
       - codacy/shell:
           name: publish_docker_local
           cmd: |
-            docker build --no-cache -t $CIRCLE_PROJECT_REPONAME:latest -f Dockerfile .
+            docker build -t $CIRCLE_PROJECT_REPONAME:latest .
             docker save --output docker-image.tar $CIRCLE_PROJECT_REPONAME:latest
           persist_to_workspace: true
           requires:
             - codacy/checkout_and_version
       - codacy_plugins_test/run:
           name: plugins_test
+          run_multiple_tests: true
           requires:
             - publish_docker_local
       - codacy/publish_docker:
-          name: publish_dockerhub
           context: CodacyDocker
           requires:
             - plugins_test
@@ -34,4 +33,4 @@ workflows:
           name: tag_version
           context: CodacyAWS
           requires:
-            - publish_dockerhub
+            - codacy/publish_docker
