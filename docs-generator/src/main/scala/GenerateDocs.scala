@@ -142,7 +142,7 @@ object GenerateDocs {
       .collect { case table: TableBlock => table }
       .flatMap(filterType[TableBody])
       .flatMap(filterType[TableRow])
-      .map(tableRowToPattern)
+      .flatMap(tableRowToPattern)
       .map {
         case (ruleName, description) =>
           (Set(
@@ -186,7 +186,7 @@ object GenerateDocs {
       case a: A => a
     }
 
-  def tableRowToPattern(tableRow: TableRow): (String, String) = {
+  def tableRowToPattern(tableRow: TableRow): Option[(String, String)] = {
     tableRow.getChildIterator.asScala.toList match {
       case List(rule: TableCell, severity: TableCell, description: TableCell) =>
       //Hadolint pattern's list has 3 values: ruleid, default severity and description
@@ -194,7 +194,9 @@ object GenerateDocs {
           .fold[String](throw new Exception("Failed parsing tableRow to Pattern"))(_.getText.toString)
         val descriptionStr = description.getText.toString
         val parsedStr = Jsoup.parse(descriptionStr).text()
-        (ruleName, parsedStr)
+        Some((ruleName, parsedStr))
+      //Other tables in the doc (e.g. the label schema table) aren't rule tables; skip them
+      case _ => None
     }
   }
 }
