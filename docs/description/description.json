@@ -14,11 +14,6 @@
   "description" : "Use the `-y` switch to avoid manual input `dnf install -y `",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3057",
-  "title" : "DL3057",
-  "description" : "`HEALTHCHECK` instruction missing.",
-  "parameters" : [ ]
-}, {
   "patternId" : "DL3010",
   "title" : "DL3010",
   "description" : "Use ADD for extracting archives into an image.",
@@ -87,6 +82,11 @@
   "patternId" : "DL3008",
   "title" : "DL3008",
   "description" : "Pin versions in `apt-get install`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3062",
+  "title" : "DL3062",
+  "description" : "Pin versions in go install. Instead of `go install ` use `go install @`",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3007",
@@ -209,11 +209,6 @@
   "description" : "Label `` does not conform to semantic versioning.",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3053",
-  "title" : "DL3053",
-  "description" : "Label `` is not a valid time format - must be conform to RFC3339.",
-  "parameters" : [ ]
-}, {
   "patternId" : "DL3028",
   "title" : "DL3028",
   "description" : "Pin versions in gem install. Instead of `gem install ` use `gem install :`",
@@ -222,6 +217,11 @@
   "patternId" : "DL3029",
   "title" : "DL3029",
   "description" : "Do not use --platform flag with FROM.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "SC1091",
+  "title" : "SC1091",
+  "description" : "Not following: Reasons include: file not found, no permissions, not included on the command line, not allowing shellcheck to follow files with -x, etc.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3002",
@@ -269,9 +269,9 @@
   "description" : "Label `` is empty.",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3005",
-  "title" : "DL3005",
-  "description" : "Do not use apt-get dist-upgrade.",
+  "patternId" : "DL3027",
+  "title" : "DL3027",
+  "description" : "Do not use `apt` as it is meant to be an end-user tool, use `apt-get` or `apt-cache` instead",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1045",
@@ -297,11 +297,6 @@
   "patternId" : "SC1010",
   "title" : "SC1010",
   "description" : "Use semicolon or linefeed before `done` (or quote to make it literal).",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3027",
-  "title" : "DL3027",
-  "description" : "Do not use `apt` as it is meant to be a end-user tool, use `apt-get` or `apt-cache` instead",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3024",
@@ -347,11 +342,6 @@
   "patternId" : "DL3004",
   "title" : "DL3004",
   "description" : "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
-  "parameters" : [ ]
-}, {
-  "patternId" : "DL3058",
-  "title" : "DL3058",
-  "description" : "Label `` is not a valid email format - must be conform to RFC5322.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3052",
@@ -402,6 +392,11 @@
   "patternId" : "SC2164",
   "title" : "SC2164",
   "description" : "Use cd ... || exit in case `cd` fails.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3058",
+  "title" : "DL3058",
+  "description" : "Label `` is not a valid email format - must conform to RFC5322.",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3043",
@@ -492,5 +487,15 @@
   "patternId" : "DL3035",
   "title" : "DL3035",
   "description" : "Do not use `zypper dist-upgrade`.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3057",
+  "title" : "DL3057",
+  "description" : "`HEALTHCHECK` instruction missing.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3053",
+  "title" : "DL3053",
+  "description" : "Label `` is not a valid time format - must conform to RFC3339.",
   "parameters" : [ ]
 } ]

@@ -1,10 +1,10 @@
 {
   "name" : "hadolint",
-  "version" : "2.12.0",
+  "version" : "2.14.0",
   "patterns" : [ {
     "patternId" : "DL1001",
     "level" : "Info",
-    "category" : "CodeStyle",
+    "category" : "ErrorProne",
     "scanType" : "IaC",
     "parameters" : [ ],
     "languages" : [ ],
@@ -47,14 +47,6 @@
     "level" : "Error",
     "category" : "Security",
     "subcategory" : "Auth",
-    "scanType" : "IaC",
-    "parameters" : [ ],
-    "languages" : [ ],
-    "enabled" : true
-  }, {
-    "patternId" : "DL3005",
-    "level" : "Error",
-    "category" : "ErrorProne",
     "scanType" : "IaC",
     "parameters" : [ ],
     "languages" : [ ],
@@ -486,6 +478,14 @@
     "languages" : [ ],
     "enabled" : false
   }, {
+    "patternId" : "DL3062",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
     "patternId" : "DL4000",
     "level" : "Error",
     "category" : "ErrorProne",
@@ -669,6 +669,14 @@
     "parameters" : [ ],
     "languages" : [ ],
     "enabled" : true
+  }, {
+    "patternId" : "SC1091",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
   }, {
     "patternId" : "SC1095",
     "level" : "Info",

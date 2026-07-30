@@ -1,4 +1,4 @@
-ARG TOOL_VERSION=2.12.0
+ARG TOOL_VERSION=2.14.0
 
 # Development image used to build the codacy-hadolint wrapper
 # Explicitly adding go.mod and go.sum avoids re-downloading dependencies on every build
@@ -30,7 +30,7 @@ RUN ./scripts/generate.sh
 
 # Hadolint official image used to copy the hadolint binary
 
-FROM hadolint/hadolint:$TOOL_VERSION as hadolint-cli
+FROM hadolint/hadolint:v$TOOL_VERSION as hadolint-cli
 
 # Compress binaries for smaller image size
 
