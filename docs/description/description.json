@@ -9,11 +9,6 @@
   "description" : "Valid UNIX ports range from 0 to 65535.",
   "parameters" : [ ]
 }, {
-  "patternId" : "DL3038",
-  "title" : "DL3038",
-  "description" : "Use the `-y` switch to avoid manual input `dnf install -y `",
-  "parameters" : [ ]
-}, {
   "patternId" : "DL3010",
   "title" : "DL3010",
   "description" : "Use ADD for extracting archives into an image.",
@@ -152,6 +147,11 @@
   "patternId" : "DL3054",
   "title" : "DL3054",
   "description" : "Label `` is not a valid SPDX license identifier.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3067",
+  "title" : "DL3067",
+  "description" : "Do not copy an entire filesystem from another stage",
   "parameters" : [ ]
 }, {
   "patternId" : "DL3012",
@@ -414,6 +414,11 @@
   "description" : "Please refrain from using inline ignore pragmas `# hadolint ignore=DLxxxx`.",
   "parameters" : [ ]
 }, {
+  "patternId" : "DL3066",
+  "title" : "DL3066",
+  "description" : "Non-numeric user-id may not be resolvable by host system",
+  "parameters" : [ ]
+}, {
   "patternId" : "SC1079",
   "title" : "SC1079",
   "description" : "This is actually an end quote, but due to next char, it looks suspect.",
@@ -437,6 +442,16 @@
   "patternId" : "SC1065",
   "title" : "SC1065",
   "description" : "Trying to declare parameters? Don't. Use `()` and refer to params as `$1`, `$2` etc.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3064",
+  "title" : "DL3064",
+  "description" : "Potentially sensitive data should not be used in the `ARG` or `ENV` commands",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3038",
+  "title" : "DL3038",
+  "description" : "Use the `-y` switch to avoid manual input `dnf install -y `",
   "parameters" : [ ]
 }, {
   "patternId" : "DL4000",
@@ -472,6 +487,11 @@
   "patternId" : "SC1095",
   "title" : "SC1095",
   "description" : "You need a space or linefeed between the function name and body.",
+  "parameters" : [ ]
+}, {
+  "patternId" : "DL3063",
+  "title" : "DL3063",
+  "description" : "Stage name should not be a reserved word",
   "parameters" : [ ]
 }, {
   "patternId" : "SC1086",

@@ -1,6 +1,6 @@
 {
   "name" : "hadolint",
-  "version" : "2.14.0",
+  "version" : "2.15.1",
   "patterns" : [ {
     "patternId" : "DL1001",
     "level" : "Info",
@@ -479,6 +479,38 @@
     "enabled" : false
   }, {
     "patternId" : "DL3062",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3063",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3064",
+    "level" : "Warning",
+    "category" : "ErrorProne",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3066",
+    "level" : "Info",
+    "category" : "CodeStyle",
+    "scanType" : "IaC",
+    "parameters" : [ ],
+    "languages" : [ ],
+    "enabled" : false
+  }, {
+    "patternId" : "DL3067",
     "level" : "Warning",
     "category" : "ErrorProne",
     "scanType" : "IaC",

@@ -1,4 +1,4 @@
-ARG TOOL_VERSION=2.14.0
+ARG TOOL_VERSION=2.15.1
 
 # Development image used to build the codacy-hadolint wrapper
 # Explicitly adding go.mod and go.sum avoids re-downloading dependencies on every build
